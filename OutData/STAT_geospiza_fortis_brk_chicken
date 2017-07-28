@@ -1,0 +1,41 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+geospiza_fortis	22	22:14	22	0	TarRecon	15	6	 1 	 0
+
+..........
+Hello USER, ...........geospiza_fortis analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/geospiza_fortis_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+geospiza_fortis	13	NA	13
+taeniopygia_guttata	1	NA	1
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_chicken/geospiza_fortis_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+113	1166764	1167114	69.2499999999997	39.6666666666667	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	5	5284600	5	3919878	5	5392455	5	3919878	NA	NA	NA	5	3919832--3919878	Breakpoints
+113	1461302	1464604	69.2499999999997	39.6666666666667	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	5	4207916	5	3607824	5	4214066	5	3607824	5	4207916--4225768	Breakpoints	5	3561860--3607824	Breakpoints
+145	118370	126734	69.2499999999997	69.2499999999997	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	15	2832593	15	2844084	15	2822900	15	2844084	NA	NA	NA	15	2832593--2844084	Breakpoints
+145	246564	247945	69.2499999999997	69.2499999999997	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	15	3000532	15	3002354	15	2963914	15	3002354	NA	NA	NA	15	3000532--3002354	Breakpoints
+391	748764	758452	40.7000525651227	1.06699451056867	1	breakpoints	geospiza_fortis:0.982456140350877	diffClass	sameBrk	2	26	2587498	26	3746915	26	2838402	26	3746915	26	2702935--3088542	Gap	26	3337425--3746915	Breakpoints
+422	205284	298768	40.7000525651227	1	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	26	218816	26	2588092	26	210371	26	2588092	NA	NA	NA	26	2587498--2588092	Breakpoints
+496	756016	762755	69.2499999999997	32.8333333333333	1	breakpoints	geospiza_fortis:0.982456140350877	diffClass	sameBrk	2	8	28698616	8	27694918	8	28709931	8	27694918	8	28698616--28767244	Gap	8	27693579--27694918	Breakpoints
+96	1127982	1133690	69.2499999999997	1	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	1	105371050	1	105458469	1	105374490	1	105458469	1	105371050--105458469	Breakpoints	1	105371050--105458469	Breakpoints
+
+..........
+Hello USER, ...........geospiza_fortis analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/geospiza_fortis_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+120	3696597	3696612	70210284494.6819	394.739712760723	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	2	67540378	5	3081033
+1278	251372	273068	220.113859246125	4.09852928554074	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	4	1335790	4	2400885
+178	1066333	1083454	836.433986289394	151	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	2	1890583	2	439781
+203	2528398	2530032	109.082224209611	102.342296715499	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	z	26713567	z	27006182
+208	1215076	1231730	610.167033683046	NA	1	breakpoints	geospiza_fortis:0.981651376146789	singleClass	singleBrk	1	z	68751663	z	17210166
+37	230750	236898	539.385254442793	534.59180521679	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	24	1951383	21	2573569
+417	315098	325156	1.01534936041484	NA	2	breakpoints	geospiza_fortis:0.00334687881781388	singleClass	singleBrk	1	22	1308068	22	2890419
+61	1112799	1200503	2123.73991598481	NA	1	breakpoints	geospiza_fortis:0.981651376146789	singleClass	singleBrk	1	1a	1726024	1a	128901
+88	1651174	1685789	292.779162571064	180.682987653422	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	3	19766924	3	3970361
+909	220791	237195	149191.849350889	824.548328047901	1	breakpoints	geospiza_fortis:0.981651376146789	diffClass	sameBrk	2	4	1580447	4	1581367

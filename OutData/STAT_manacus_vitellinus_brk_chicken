@@ -1,0 +1,34 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+manacus_vitellinus	29	29:25	29	0	TarRecon	17	7	 5 	 0
+
+..........
+Hello USER, ...........manacus_vitellinus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/manacus_vitellinus_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+both_finches_crow	3		3
+manacus_vitellinus	20	3	17
+taeniopygia_guttata	2		2
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_chicken/manacus_vitellinus_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+203	145032	152123	156574.25	4962.19367820696	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	1	195080036	1	86138119	1	195048291	1	86138119	NA	NA	NA	1	86121017--86138119	Gap
+365	455521	465438	156574.25	7903.94814753421	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	z	45515398	z	53696869	z	45497916	z	53696869	NA	NA	NA	z	53696446--53696869	Gap
+60	2456378	2460501	156574.25	604.081203890383	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	1	62207931	1	66859166	1	62319443	1	66859166	NA	NA	NA	1	66859162--66859166	Gap
+73	1108645	1121420	156574.25	97.8757458273276	1	breakpoints	manacus_vitellinus:0.969543147208122	diffClass	sameBrk	2	z	55880192	z	56840797	z	55878263	z	56840797	NA	NA	NA	z	56600920--56840797	Breakpoints
+
+..........
+Hello USER, ...........manacus_vitellinus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/manacus_vitellinus_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+157	157220	162713	237.788702014685	1	1	breakpoints	manacus_vitellinus:0.993377483443709	sameClass	sameBrk	2	1	99264151	1	103922113
+157	2366826	2433754	237.388615137794	68.5000000000001	1	breakpoints	manacus_vitellinus:0.993377483443709	diffClass	sameBrk	2	1	106149172	1	112883516
+182	1985171	1988444	264.83286447746	68.5000000000001	1	breakpoints	manacus_vitellinus:0.993377483443709	sameClass	sameBrk	2	4a	20674113	4a	5271415
+3	326010	327371	462.117515122448	175.398318148368	1	breakpoints	manacus_vitellinus:0.993377483443709	sameClass	sameBrk	2	9	5349695	9	252869
+364	154585	163511	144.287981739851	1	1	breakpoints	manacus_vitellinus:0.993377483443709	sameClass	sameBrk	2	22	894793	22	1302920
+77	5043751	5047589	6995432.1928273	68.5000000000001	1	breakpoints	manacus_vitellinus:0.993377483443709	sameClass	sameBrk	2	15	5862584	15	8551593

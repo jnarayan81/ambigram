@@ -1,0 +1,29 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+manacus_vitellinus	26	26:26	26	0	TarRecon	20	3	 3 	 0
+
+..........
+Hello USER, ...........manacus_vitellinus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_finch/manacus_vitellinus_brk_finch.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+both_finches_crow_manakin	3		3
+gallus_gallus	3	1	2
+manacus_vitellinus	20		20
+
+..........
+Hello USER, ...........manacus_vitellinus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_chicken/manacus_vitellinus_brk_chicken.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+107	1873929	1883608	73.1293176223982	3.25968051146266	1	breakpoints	manacus_vitellinus:0.969543147208122	diffClass	sameBrk	2	21	1973776	21	5834831
+203	145032	152123	156574.25	4962.19367820696	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	1	195080036	1	86138119
+210	1742990	1797046	110.9554942661	1	1	breakpoints	manacus_vitellinus:0.969543147208122	diffClass	sameBrk	2	z	42929298	z	81378260
+217	611968	723153	370.777182416252	NA	1	breakpoints	manacus_vitellinus:0.969543147208122	singleClass	singleBrk	1	11	7215892	11	16499610
+262	234455	244242	101.753437800491	2.19523339263482	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	7	5754102	7	1841435
+294	427764	475474	110.9554942661	1	1	breakpoints	manacus_vitellinus:0.969543147208122	diffClass	sameBrk	2	z	41328598	z	60983675
+365	455521	465438	156574.25	7903.94814753421	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	z	45515398	z	53696869
+60	2456378	2460501	156574.25	604.081203890383	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	1	62207931	1	66859166
+73	1108645	1121420	156574.25	97.8757458273276	1	breakpoints	manacus_vitellinus:0.969543147208122	diffClass	sameBrk	2	z	55880192	z	56840797

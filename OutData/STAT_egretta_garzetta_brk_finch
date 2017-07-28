@@ -1,0 +1,31 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+egretta_garzetta	24	24:23	24	0	TarRecon	16	5	 3 	 0
+
+..........
+Hello USER, ...........egretta_garzetta analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_finch/egretta_garzetta_brk_finch.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anolis_carolinensis	1		1
+egret_penguin	1	1	
+egretta_garzetta	21	5	16
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_finch/egretta_garzetta_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+272	872792	2516249	151	1	1	breakpoints	egretta_garzetta:0.972850678733032	sameClass	sameBrk	2	z	24501317	z	2287964	z	24678630	z	2287964	z	24637341--24699441	Breakpoints	z	2282778--2287964	Gap
+
+..........
+Hello USER, ...........egretta_garzetta analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_chicken/egretta_garzetta_brk_chicken.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+200	408461	411895	33.6	33.6	1	breakpoints	egretta_garzetta:0.964071856287425	sameClass	sameBrk	2	3	28857724	3	22463
+306	843281	843456	33.6	33.6	1	breakpoints	egretta_garzetta:0.964071856287425	sameClass	sameBrk	2	3	28486392	3	369148
+354	3834558	3839569	33.6	33.6	1	breakpoints	egretta_garzetta:0.964071856287425	sameClass	sameBrk	2	11	9471970	1	161104985
+41	3311844	3439779	33.6	1	1	breakpoints	egretta_garzetta:0.964071856287425	sameClass	sameBrk	2	4	51207320	z	39728735
+439	1279585	1279646	33.6	33.6	1	breakpoints	egretta_garzetta:0.964071856287425	sameClass	sameBrk	2	13	15866068	z	20056878
+87	3232289	3254301	33.6	1	1	breakpoints	egretta_garzetta:0.964071856287425	sameClass	sameBrk	2	3	103968643	3	101222805

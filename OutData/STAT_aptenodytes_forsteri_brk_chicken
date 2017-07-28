@@ -1,0 +1,28 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+aptenodytes_forsteri	21	21:20	21	0	TarRecon	16	2	 3 	 0
+
+..........
+Hello USER, ...........aptenodytes_forsteri analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/aptenodytes_forsteri_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anolis_carolinensis	1	NA	1
+aptenodytes_forsteri	17	NA	17
+both_finches	1	NA	1
+egret_penguin	1	NA	1
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_chicken/aptenodytes_forsteri_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+104	234868	271475	27.8333333333334	NA	1	breakpoints	aptenodytes_forsteri:0.970238095238095	singleClass	singleBrk	1	8	28728262	8	2852179	8	28836775	8	2852179	NA	NA	NA	8	2798243--2852179	Breakpoints
+
+..........
+Hello USER, ...........aptenodytes_forsteri analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/aptenodytes_forsteri_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+278	731893	776815	36.8333333333334	NA	1	breakpoints	aptenodytes_forsteri:0.993377483443709	singleClass	singleBrk	1	9	27227285	9	1474006
+61	4210025	4212450	36.8333333333334	36.8333333333334	1	breakpoints	aptenodytes_forsteri:0.993377483443709	sameClass	sameBrk	2	21	5420771	1	95227273

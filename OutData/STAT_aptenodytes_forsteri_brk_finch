@@ -1,0 +1,28 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+aptenodytes_forsteri	19	19:18	19	0	TarRecon	17	0	 2 	 0
+
+..........
+Hello USER, ...........aptenodytes_forsteri analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_finch/aptenodytes_forsteri_brk_finch.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+aptenodytes_forsteri	17	1	16
+egret_penguin	1		1
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_finch/aptenodytes_forsteri_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+278	731893	776815	36.8333333333334	NA	1	breakpoints	aptenodytes_forsteri:0.993377483443709	singleClass	singleBrk	1	9	27227285	9	1474006	9	27583341	9	1474006	NA	NA	NA	9	1472590--1474006	Breakpoints
+
+..........
+Hello USER, ...........aptenodytes_forsteri analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_chicken/aptenodytes_forsteri_brk_chicken.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+103	4386864	4449478	27.8333333333334	27.8333333333334	1	breakpoints	aptenodytes_forsteri:0.970238095238095	sameClass	sameBrk	2	z	69535615	1	29061559
+104	234868	271475	27.8333333333334	NA	1	breakpoints	aptenodytes_forsteri:0.970238095238095	singleClass	singleBrk	1	8	28728262	8	2852179
+145	2091821	2091954	27.8333333333334	1.79290339196651	1	breakpoints	aptenodytes_forsteri:0.970238095238095	sameClass	sameBrk	2	7	8792607	2	128341482
+145	3433278	3433292	27.8333333333334	14.7358383702164	1	breakpoints	aptenodytes_forsteri:0.970238095238095	diffClass	sameBrk	2	2	129427160	1	168108155

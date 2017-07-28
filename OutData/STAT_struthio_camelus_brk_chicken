@@ -1,0 +1,33 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+struthio_camelus	31	31:31	31	0	TarRecon	18	11	 2 	 0
+
+..........
+Hello USER, ...........struthio_camelus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/struthio_camelus_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+g6	1	1	
+neognathae	6	5	1
+struthio_camelus	22	14	8
+taeniopygia_guttata	2	2	
+
+..........
+Hello USER, ...........struthio_camelus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/struthio_camelus_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+1046	357074	372076	1	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	2	41586946	2	74043614
+114	2648288	2648354	30.375	1	1	breakpoints	struthio_camelus:0.993377483443709	diffClass	sameBrk	2	9	11332566	2	145079896
+123	4535259	4539258	30.375	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	4a	19421473	4a	4197343
+224	2021510	2021520	1	NA	1	breakpoints	struthio_camelus:0.993377483443709	singleClass	singleBrk	1	27	679197	2	131080479
+38	1766269	1812830	30.375	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	13	1581426	13	3646402
+380	198929	198985	1	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	13	133081	8	13509898
+39	1772148	1778324	30.375	1	1	breakpoints	struthio_camelus:0.993377483443709	diffClass	sameBrk	2	4a	5897469	4a	19422315
+437	1294332	1294356	1	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	24	7157865	1a	5872936
+460	677036	772162	30.375	6.35076793548041	1	breakpoints	struthio_camelus:0.993377483443709	diffClass	sameBrk	2	2	75875732	2	75941649
+53	1570011	1582454	30.375	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	3	5028976	3	24496264
+607	347081	645876	1	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	14	1718759	14	3443569
+80	1122177	1142886	30.375	1	1	breakpoints	struthio_camelus:0.993377483443709	sameClass	sameBrk	2	13	2457591	13	6777379

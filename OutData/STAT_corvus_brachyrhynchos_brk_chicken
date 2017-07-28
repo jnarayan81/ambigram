@@ -1,0 +1,38 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+corvus_brachyrhynchos	29	29:20	29	0	TarRecon	18	8	 3 	 0
+
+..........
+Hello USER, ...........corvus_brachyrhynchos analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/corvus_brachyrhynchos_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+corvus_brachyrhynchos	20	1	19
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_chicken/corvus_brachyrhynchos_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+14	19126321	19134069	228.146452333299	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	3	73600034	3	44674786	3	73980625	3	44674786	NA	NA	NA	3	44674159--44674786	Breakpoints
+209	749028	782473	3947.25	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	57269998	1	73177545	1	57287297	1	73177545	NA	NA	NA	1	73158092--73177545	Breakpoints
+209	1025559	1171543	3947.25	392.965917355915	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	sameClass	sameBrk	2	1	73509502	1	67311734	1	73420631	1	67311734	NA	NA	NA	1	67310626--67311734	Breakpoints
+209	2129917	2132901	3947.25	116.354922293562	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	68321150	1	68321162	1	68270108	1	68321162	NA	NA	NA	1	68321150--68321162	Breakpoints
+209	2255585	2335928	3947.25	3947.25	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	sameClass	sameBrk	2	1	68447794	1	66949383	1	68443846	1	66949383	NA	NA	NA	1	66925476--66949383	Breakpoints
+27	962652	964366	3947.25	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	56536504	1	57270002	1	56563710	1	57270002	NA	NA	NA	1	57269998--57270002	Gap
+3	1658153	2059945	182.715159926093	6.19652340400074	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	194052034	1	103284143	1	193624957	1	103284143	NA	NA	NA	1	103281215--103284143	Breakpoints
+6	1213598	1216447	228.146452333299	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	sameClass	sameBrk	2	3	46286050	3	51428837	3	46365559	3	51428837	NA	NA	NA	3	51428794--51428837	Gap
+72	498676	544380	1.06699451056867	1	4	breakpoints	corvus_brachyrhynchos:0.325562154082709	diffClass	sameBrk	2	26	4017762	26	8616	26	4078774	26	8616	NA	NA	NA	26	1--8616	Gap
+
+..........
+Hello USER, ...........corvus_brachyrhynchos analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/corvus_brachyrhynchos_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+18	168624	176029	853.300642811994	848.951266511296	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	sameClass	sameBrk	2	2	1025019	2	1035742
+412	911636	941799	2964216744.71236	1	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	sameClass	sameBrk	2	1	98553224	1	98553244
+5	4289815	4291696	6183844883.42724	16021.0315264377	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	diffClass	sameBrk	2	14	7581829	14	8455465
+5	13267588	13269272	6183844883.42724	2014644.71444954	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	diffClass	sameBrk	2	14	8455224	14	16238529
+66	459528	532343	2988.5958708647	1	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	sameClass	sameBrk	2	6	3318907	11	16383631
+83	114804	114873	504368652.112223	24447148.4099988	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	sameClass	sameBrk	2	9	9368529	1	18816042
+881	326348	330488	37.8144488037942	37.8128998293837	1	breakpoints	corvus_brachyrhynchos:0.985401459854015	sameClass	sameBrk	2	z	4336689	z	5579171

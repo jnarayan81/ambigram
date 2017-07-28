@@ -1,0 +1,73 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+anolis_carolinensis	69	69:68	69	0	TarRecon	20	2	 47 	 0
+
+..........
+Hello USER, ...........anolis_carolinensis analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/anolis_carolinensis_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anolis_carolinensis	55	15	40
+both_finches_crow	1		1
+columba_livia	1		1
+neognathae	7	3	4
+taeniopygia_guttata	4		4
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_chicken/anolis_carolinensis_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+1	112880677	116418543	94.0000000000002	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	13	4421773	7	4151837	13	4895616	7	4151837	13	4421773--10045234	Gap	7	563670--4151837	Gap
+1	132038669	132551701	1.14009350271744	NA	2	breakpoints	anolis_carolinensis:0.192760015878717	singleClass	singleBrk	1	13	2868271	1	169616821	13	3978735	1	169616821	NA	NA	NA	1	168676909--169616821	Breakpoints
+1	137411227	137441449	7.95056144134625	NA	2	breakpoints	anolis_carolinensis:0.0125749412235737	singleClass	singleBrk	1	1	138382917	1	168508448	1	138375830	1	168508448	NA	NA	NA	1	165036028--168508448	Gap
+1	194494015	196602166	94.0000000000003	NA	2	breakpoints	anolis_carolinensis:0.0977621118311748	singleClass	singleBrk	1	2	41261387	3	76456696	2	41766325	3	76456696	2	41261387--42928077	Gap	3	75220382--76456696	Breakpoints
+1	214741306	222310923	1	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	3	51403513	3	39409242	3	51793709	3	39409242	3	51403513--54968298	Gap	3	34636965--39409242	Gap
+2	113760676	120453014	94.0000000000002	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	18	4714250	13	3234890	18	5030657	13	3234890	18	4714250--6568995	Gap	13	2868271--3234890	Breakpoints
+2	120687035	128609200	94.0000000000002	1	1	breakpoints	anolis_carolinensis:0.932038834951456	sameClass	sameBrk	2	13	3360909	4	21439103	13	3468911	4	21439103	13	3360909--3914723	Breakpoints	4	21438084--21439103	Breakpoints
+3	103828790	104473071	7.95056144134625	1	2	breakpoints	anolis_carolinensis:0.0125749412235737	sameClass	sameBrk	2	1	144391850	1	138524528	1	145816285	1	138524528	1	145793913--152063996	Gap	1	138382917--138524528	Breakpoints
+4	70614114	71450578	94.0000000000002	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	8	6035320	8	7099362	8	6352735	8	7099362	8	6035320--7099362	Breakpoints	8	6035320--7099362	Breakpoints
+4	71701276	80766635	94.0000000000002	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	8	7365363	3	3489795	8	7350060	3	3489795	NA	NA	NA	3	3203706--3489795	Breakpoints
+5	120278215	127084958	94.0000000000002	NA	3	breakpoints	anolis_carolinensis:0.00206515779566316	singleClass	singleBrk	1	4	30084440	4	21676776	4	30530310	4	21676776	4	30084440--30984921	Breakpoints	4	21667652--21676776	Breakpoints
+5	128009257	128315489	94.0000000000002	94.0000000000002	1	breakpoints	anolis_carolinensis:0.932038834951456	sameClass	sameBrk	2	4	22292215	4	20936966	4	22601075	4	20936966	4	22292215--23630665	Breakpoints	4	18429406--20936966	Gap
+un_gl343236	902184	2118422	94.0000000000002	94.0000000000002	1	breakpoints	anolis_carolinensis:0.932038834951456	sameClass	sameBrk	2	4	78314200	4	81494805	4	78374519	4	81494805	4	78314200--81494805	Breakpoints	4	78314200--81494805	Breakpoints
+un_gl343295	704281	1518613	94.0000000000002	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	11	981462	11	9161634	11	1105043	11	9161634	11	981462--2361406	Gap	11	9081504--9161634	Gap
+
+..........
+Hello USER, ...........anolis_carolinensis analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/anolis_carolinensis_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+1	6082883	7772581	1.9134968009278	NA	2	breakpoints	anolis_carolinensis:0.103520068750937	singleClass	singleBrk	1	5	53168990	5	47521816
+1	39942496	43144714	151	1	2	breakpoints	anolis_carolinensis:0.499540543184225	sameClass	sameBrk	2	5	26553203	5	21561303
+1	85312702	94182331	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	7	6897542	7	10818427
+1	94369927	102417983	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	7	10989512	7	36157073
+1	103389838	111899828	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	7	36669874	13	14356238
+1	149507710	150960675	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	3	100623428	7	12288274
+1	151213771	151316522	1	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	7	12400434	3	90471653
+1	212477498	212696052	1	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	3	57793401	3	53201502
+1	247466864	248296992	3.14933451825501	NA	2	breakpoints	anolis_carolinensis:0.0766863315523451	singleClass	singleBrk	1	3	6318459	3	19138442
+1	258796080	259937768	151	3.14933451825501	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	3	28337865	3	21754289
+2	1534993	2157809	151	NA	2	breakpoints	anolis_carolinensis:0.874726020114974	singleClass	singleBrk	1	z	407681	z	44923466
+2	53948524	54335921	3.84965407376147	NA	2	breakpoints	anolis_carolinensis:0.151936462935248	singleClass	singleBrk	1	z	65776218	5	34014094
+2	134260146	137829039	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	7	25691373	13	6552733
+2	142351935	160343617	1	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	13	8399419	12	7191282
+3	19707761	20623119	151	151	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	9	14023475	9	8677064
+3	36453234	38122779	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	9	4178890	6	21085362
+3	41572983	54839863	151	1.6753443118825	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	6	23901210	6	34691536
+3	63258146	70290267	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	6	33419659	1	59107050
+4	34211195	34556038	151	2.52175700967305	1	breakpoints	anolis_carolinensis:0.967078189300411	diffClass	sameBrk	2	2	124888152	2	107745718
+4	87867916	88171948	151	151	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	8	8200658	8	9428236
+4	90865087	93797669	151	151	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	8	10401654	8	10587119
+4	95535886	98508012	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	8	11453326	8	24348663
+4	112498372	114525683	151	3.66086440189831	1	breakpoints	anolis_carolinensis:0.967078189300411	diffClass	sameBrk	2	8	18941658	8	21900665
+4	135115841	135414990	2.1144401879861	NA	2	breakpoints	anolis_carolinensis:0.0922768656864856	singleClass	singleBrk	1	20	763988	20	2552210
+4	136902480	140126766	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	20	3226773	20	5104896
+5	41846910	43275444	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	1a	38379513	4	7649449
+5	80267183	80688903	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	4	62124530	1	88548489
+5	113266976	116587038	151	151	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	4	41472030	4	35454262
+6	56404994	56572482	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	2	76100161	2	88381095
+6	60768858	60811700	151	12.3103980742748	1	breakpoints	anolis_carolinensis:0.967078189300411	sameClass	sameBrk	2	4	65861121	27	411743
+6	67257964	70009410	12.3103980742748	NA	3	breakpoints	anolis_carolinensis:0.00307708287231343	singleClass	singleBrk	1	27	358133	27	1935465
+un_gl343343	242257	748270	1.95725853314944	1	2	breakpoints	anolis_carolinensis:0.117054426366786	diffClass	sameBrk	2	7	21408679	7	22681261
+un_gl343479	237036	295200	1	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	10	8602123	10	2821009

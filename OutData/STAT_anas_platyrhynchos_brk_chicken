@@ -1,0 +1,59 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+anas_platyrhynchos	126	126:117	126	0	TarRecon	87	17	 22 	 0
+
+..........
+Hello USER, ...........anas_platyrhynchos analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/output_chicken/anas_platyrhynchos_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anas_platyrhynchos	90	8	82
+anolis_carolinensis	3	1	2
+both_finches	1	1	
+both_finches_crow	2	2	
+both_finches_crow_manakin	4		4
+cuculus_canorus	2		2
+g3	2	2	
+g7	2	1	1
+struthio_camelus	1	1	
+taeniopygia_guttata	10		10
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/output_chicken/anas_platyrhynchos_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2
+12	8758851	8759834	232422.233666016	1.97052418803485	1	breakpoints	anas_platyrhynchos:0.982456140350877	diffClass	sameBrk	2	11	2635429	11	9425556	11	1907448	11	9425556	NA	NA	NA	11	9425212--9425556	Breakpoints
+15	4365734	4366476	24439.1069005293	6.4455893235257	1	breakpoints	anas_platyrhynchos:0.982456140350877	sameClass	sameBrk	2	14	13789367	14	12750755	14	13790065	14	12750755	14	13789367--14306071	Breakpoints	14	12413115--12750755	Breakpoints
+28	1383155	1440473	99.0870502706722	NA	1	breakpoints	anas_platyrhynchos:0.982456140350877	singleClass	singleBrk	1	27	1974468	27	2199524	27	2432215	27	2199524	NA	NA	NA	27	1974468--2199524	Breakpoints
+28	2526275	2717368	1392.24502760368	NA	1	breakpoints	anas_platyrhynchos:0.982456140350877	singleClass	singleBrk	1	27	4042249	27	3366616	27	4075473	27	3366616	27	4042249--4418110	Breakpoints	27	2986681--3366616	Gap
+4	68587759	68646371	151.096811167043	NA	1	breakpoints	anas_platyrhynchos:0.982456140350877	singleClass	singleBrk	1	4	90053137	4	90053182	4	91819698	4	90053182	NA	NA	NA	4	90053137--90053182	Breakpoints
+7	22334001	22334977	5.28554026258514	NA	2	breakpoints	anas_platyrhynchos:0.0253747393594481	singleClass	singleBrk	1	7	21583583	7	27739692	7	22086401	7	27739692	NA	NA	NA	7	22960015--27739692	Breakpoints
+7	22508011	22509194	129601.375	5.28554026258514	1	breakpoints	anas_platyrhynchos:0.982456140350877	sameClass	sameBrk	2	7	27887389	7	21714311	7	27912726	7	21714311	7	27887389--30892874	Gap	7	21583583--21714311	Breakpoints
+7	23743824	23744987	129601.375	NA	1	breakpoints	anas_platyrhynchos:0.982456140350877	singleClass	singleBrk	1	7	22960015	7	30892874	7	22948941	7	30892874	NA	NA	NA	7	27887389--30892874	Gap
+z	54062955	54063677	30405022.9331788	15443.4543643154	1	breakpoints	anas_platyrhynchos:0.982456140350877	sameClass	sameBrk	2	z	78446763	z	60938267	z	70097431	z	60938267	NA	NA	NA	z	60937870--60938267	Breakpoints
+z	54214321	54217947	30405022.9331788	139309.58957679	1	breakpoints	anas_platyrhynchos:0.982456140350877	sameClass	sameBrk	2	z	61082593	z	61097062	z	61088911	z	61097062	z	61082593--61097062	Breakpoints	z	61082593--61097062	Breakpoints
+
+..........
+Hello USER, ...........anas_platyrhynchos analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+MISSED/NO OVERLAP Breakpoint with same classification in Target ( for /home/jitendra/ETC/ambigram/output_finch/anas_platyrhynchos_brk_finch.tar3 : Used as target) 
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF
+10	11662435	11685076	1.52893113720373	1	2	breakpoints	anas_platyrhynchos:0.0112222509233902	sameClass	sameBrk	2	4a	15490467	4a	8542585
+10	14168026	14174442	1.49150369396317	1	2	breakpoints	anas_platyrhynchos:0.0105525225539797	sameClass	sameBrk	2	4a	14352469	4a	16029481
+10	14352614	14358494	1.49150369396317	1	2	breakpoints	anas_platyrhynchos:0.0105525225539797	sameClass	sameBrk	2	4a	16166788	4a	15536729
+2	134995050	134995524	137.5	137.5	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	2	137752365	2	137864159
+2	135632871	135633480	137.5	137.5	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	2	138445073	2	137752473
+2	135743467	135744035	137.5	137.5	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	2	137864154	2	138445837
+22	5526876	5542375	137.5	1	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	21	114821	21	286901
+25	4028952	4029445	137.5	NA	1	breakpoints	anas_platyrhynchos:0.993377483443709	singleClass	singleBrk	1	24	3248721	24	11404
+4	1532985	1534513	126.443315234026	48.3333333333332	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	4	10179344	4	2571371
+4	12458023	12459825	137.5	48.3333333333334	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	4	2185417	4	41386569
+4	20411815	20412922	137.5	1	1	breakpoints	anas_platyrhynchos:0.993377483443709	diffClass	sameBrk	2	4	35837514	4	33143494
+5	5216797	5217870	137.5	137.5	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	5	4683569	5	1757131
+7	747542	758440	137.5	137.5	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	7	22744872	7	22996329
+7	10702285	10704626	137.5	1	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	7	2278737	7	18816896
+7	14332587	14335317	137.5	68.5000000000001	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	7	28616586	7	9083525
+z	1534920	1550165	68.2523208361711	NA	1	breakpoints	anas_platyrhynchos:0.993377483443709	singleClass	singleBrk	1	z	1217272	z	36968338
+z	45154460	45275368	82.973474068344	1	1	breakpoints	anas_platyrhynchos:0.993377483443709	sameClass	sameBrk	2	z	21496137	z	32045159
+z	45440522	45471947	82.973474068344	NA	1	breakpoints	anas_platyrhynchos:0.993377483443709	singleClass	singleBrk	1	z	32190735	z	25044945
