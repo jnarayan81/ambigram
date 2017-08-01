@@ -19,6 +19,7 @@ coordinateFolder_ref2=/home/jitendra/ETC/ambigram/finch-data
 coordinateFolderOUT_ref1=/home/jitendra/ETC/ambigram/output_chicken
 coordinateFolderOUT_ref2=/home/jitendra/ETC/ambigram/output_finch
 
+class=classification.eba
 #Parameters
 spsNum=11
 threshold=2 #score diff
@@ -64,10 +65,10 @@ do
     tarName=$spsName$inside$ref2
 
     # With REF1
-    perl $scriptBase/checkOverlaps_TAR2TAR.Pl -r $coordinateFolderOUT_ref1/$refName.tar3 -t $coordinateFolderOUT_ref2/$tarName.tar3 -o $finalResult/OUT_$refName -n $spsName -c $spsNum -l $extend -a $coordinateFolder_ref1/all_all.eba00 -s $coordinateFolder_ref1/sps.txt -b $coordinateFolder_ref1/all.hsb -z aaaa -e $finalResult/STAT_$refName -i $spsName >> countSTAT_$ref2
+    perl $scriptBase/checkOverlaps_TAR2TAR.Pl -r $coordinateFolderOUT_ref1/$refName.tar3 -t $coordinateFolderOUT_ref2/$tarName.tar3 -o $finalResult/OUT_$refName -n $spsName -c $spsNum -l $extend -a $coordinateFolder_ref1/all_all.eba00 -s $coordinateFolder_ref1/sps.txt -b $coordinateFolder_ref1/all.hsb -z aaaa -e $finalResult/STAT_$refName -i $spsName -d finalOut_$ref1 -g $coordinateFolder_ref1/$class >> countSTAT_$ref1
 
     # With REF2
-    perl $scriptBase/checkOverlaps_TAR2TAR.Pl -r $coordinateFolderOUT_ref2/$tarName.tar3 -t $coordinateFolderOUT_ref1/$refName.tar3 -o $finalResult/OUT_$tarName -n $spsName -c $spsNum -l $extend -a $coordinateFolder_ref2/all_all.eba00 -s $coordinateFolder_ref2/sps.txt -b $coordinateFolder_ref2/all.hsb -z aaaa -e $finalResult/STAT_$tarName -i $spsName >> countSTAT_$ref1
+    perl $scriptBase/checkOverlaps_TAR2TAR.Pl -r $coordinateFolderOUT_ref2/$tarName.tar3 -t $coordinateFolderOUT_ref1/$refName.tar3 -o $finalResult/OUT_$tarName -n $spsName -c $spsNum -l $extend -a $coordinateFolder_ref2/all_all.eba00 -s $coordinateFolder_ref2/sps.txt -b $coordinateFolder_ref2/all.hsb -z aaaa -e $finalResult/STAT_$tarName -i $spsName -d finalOut_$ref2 -g $coordinateFolder_ref2/$class >> countSTAT_$ref2
 
     fi
 done

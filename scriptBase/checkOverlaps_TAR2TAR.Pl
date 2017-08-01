@@ -11,7 +11,7 @@ Getopt::Long::Configure qw(gnu_getopt);
 
 #perl checkOverlaps_TAR2TAR.Pl anas_platyrhynchos_brk_chicken_ref.tar3 anas_platyrhynchos_brk_finch_ref.tar3 OUT anas_platyrhynchos 11 0 > STAT
 
-my ($file_ref, $file_tar, $spsFile, $allall, $allHSB, $help, $refName, $length, $outfile, $spsNum, $statfile, $outfile2, $identify);
+my ($file_ref, $file_tar, $spsFile, $allall, $allHSB, $help, $refName, $length, $outfile, $spsNum, $statfile, $outfile2, $identify, $dataFinal, $groupClass);
 my $version = 0.1;
 
 GetOptions(
@@ -19,16 +19,19 @@ GetOptions(
     'file_tar|t=s' => \$file_tar,
     'allall|a=s' => \$allall,
     'spsFile|s=s' => \$spsFile,
+    'groupClass|g=s' => \$groupClass,
     'spsNum|c=i' => \$spsNum,
     'allHSB|b=s' => \$allHSB, # all HSB from same file
     'refName|n=s' => \$refName,
     'outfile|o=s' => \$outfile,
+    'dataFinal|d=s' => \$dataFinal,
     'outfile2|e=s' => \$outfile2,
     'identify|i=s' => \$identify,
     'statfile|z=s' => \$statfile,
     'length|l=i' => \$length,
     'help|h' => \$help
 ) or  die("Error in command line arguments\n");
+
 
 #&help($version) if $help;
 #pod2usage("$0: \nI am afraid, no files given.")  if ((@ARGV == 0) && (-t STDIN));
@@ -37,6 +40,29 @@ if (!$file_ref or !$file_tar or !$spsFile or !$allHSB or !$allall or !$spsNum or
 #if (-d "output_$refName") {
 #deldir("test"); # or deldir($file_ref) to make it commandline
 #} else { mkdir "output_$refName"; }
+
+#Store the classification file
+sub trim($)
+{
+my $string = shift;
+$string =~ s/^[\t\s]+//;
+$string =~ s/[\t\s]+$//;
+$string =~ s/[\r\n]+$//; ## remove odd or bad newline ...
+return $string;
+}
+
+open(my $infh, '<:encoding(UTF-8)', $groupClass) or die "Could not open file '$groupClass' $!";
+my %classHash;
+while (<$infh>) {
+	chomp $_; my $line=$_;
+	$line=trim($line);
+	if (index($_,"#") == 0) { next; } # Lines starting with a hash mark are comments
+	next if $line =~ /^\s*$/;
+	my @tmpLine=split /\=/, $line;
+	#next if $tmpLine[1] eq "";
+	$classHash{$tmpLine[0]}=$tmpLine[1];
+    }
+close $infh;
 
 # Store species
 open SPSFILE, "$spsFile" or die colored ["bold red on_black"], $!;
@@ -171,7 +197,8 @@ foreach my $str (sort keys %count) {
 	my ($vv1, $vv2); 
 	if (%countONE) {$vv1=$countONE{$str}} else {$vv1='NA';}
 	if (%countOTHER) {$vv2=$countOTHER{$str}} else {$vv2='NA';}
-	print $outfh4 "$str\t$count{$str}\t$vv1\t$vv2\n"; 
+	print $outfh4 "$str\t$count{$str}\t$vv1\t$vv2\n";
+	createResTable ($str,$count{$str},$vv1,$vv2, \%classHash, $dataFinal,$refName);
 }
 
 
@@ -180,7 +207,7 @@ print $outfh4 "\n\nMISSED (Reference used EBRs from $file_ref ) OVERLAPS EBRs---
 print $outfh4 "chr\tstart\tend\tfirstBestratio\tsecondBestRatio\tPercentageUsed\tBrk\tclass\tsameordiffClass\tsameordiffBrk\tborderUsed\tChrREF\tStREF\tChrREF\tStREF\tfinalREFchrTAR\tfinalCor1TAR\tfinalREFchrTAR\tfinalCor2TAR\tdeciChrTAR1\tdeciCordiTAR1\tdeciBrkTAR1\tdeciChrTAR2\tdeciCordiTAR2\tdeciBrkTAR2\n";
 foreach my $v (@missinBrk) { 
 	my @vals=split('\t', $v);
-	my ($refChr1, $corSt) = extractRefCors($vals[0],$vals[1]); my ($refChr2, $corEd) = extractRefCors($vals[0],$vals[2]);
+	my ($refChr1, $corSt) = extractRefCors($vals[0],$vals[1],$allHSB); my ($refChr2, $corEd) = extractRefCors($vals[0],$vals[2],$allHSB);
 	if (!$corSt) {$refChr1='0';$corSt='0';} if (!$corEd) {$refChr2='0'; $corEd='0';}
 	my ($refChrVal1, $corVal1, $DeciVal1) = assignRefCorsVal($refChr1,$corSt);
         my ($refChrVal2, $corVal2, $DeciVal2) = assignRefCorsVal($refChr2,$corEd);
@@ -216,10 +243,36 @@ my ($x1, $x2, $y1, $y2)=@_;
 return $x1 <= $y2 && $y1 <= $x2;
 }
 
+sub createResTable {
+my ($str, $count, $value1, $value2, $classHash_ref, $dataFinal, $substr) = @_;
+open(my $fhOut, '>>',$dataFinal) or die "Could not open file '$dataFinal' $!";
+my $sps='NA';
+my %classHash=%$classHash_ref;
+
+if ($classHash{$str}) {
+	if (index($classHash{$str}, $substr) != 1) { # -1 if not found
+		$sps=$substr;
+		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\tcontains:$sps\n"; 
+	}
+	else {
+		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\tcontains:$sps\n"; 
+	}
+}
+else {
+	if ($substr eq $str) {
+		$sps=$substr;
+		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\tcontains:$sps\n";
+	}
+	else {
+		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\tcontains:$sps\n";
+	} 
+}
+close $fhOut;
+}
+
 
 sub extractRefCors {
-my ($chr, $cor) = @_;
-my $file = "$allHSBFile"; # Provide target all.hsb file
+my ($chr, $cor, $file) = @_;
 my $finalRefCor='NA';
 	open(my $fh, '<:encoding(UTF-8)', $file) or die "Could not open file '$file' $!";
 	while (my $row = <$fh>) {
