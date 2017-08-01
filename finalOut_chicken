@@ -1,0 +1,40 @@
+columba_livia	anolis_carolinensis	2	NA	2	contains:NA ****
+columba_livia	columba_livia	66	NA	66	contains:columba_livia***
+columba_livia	g3	1	NA	1	contains:NA ****
+columba_livia	g7	1	NA	1	contains:NA ****
+columba_livia	taeniopygia_guttata	1	NA	1	contains:NA ****
+corvus_brachyrhynchos	corvus_brachyrhynchos	20	NA	20	contains:corvus_brachyrhynchos***
+anas_platyrhynchos	anas_platyrhynchos	90	NA	90	contains:anas_platyrhynchos***
+anas_platyrhynchos	anolis_carolinensis	3	NA	3	contains:NA ****
+anas_platyrhynchos	both_finches_crow_manakin	4	NA	4	contains:anas_platyrhynchos *
+anas_platyrhynchos	cuculus_canorus	2	NA	2	contains:NA ****
+anas_platyrhynchos	g3	2	NA	2	contains:NA ****
+anas_platyrhynchos	g7	2	NA	2	contains:NA ****
+anas_platyrhynchos	taeniopygia_guttata	10	NA	10	contains:NA ****
+geospiza_fortis	geospiza_fortis	13	NA	13	contains:geospiza_fortis***
+geospiza_fortis	taeniopygia_guttata	1	NA	1	contains:NA ****
+manacus_vitellinus	both_finches_crow	3	NA	3	contains:manacus_vitellinus *
+manacus_vitellinus	manacus_vitellinus	19	NA	19	contains:manacus_vitellinus***
+manacus_vitellinus	taeniopygia_guttata	2	NA	2	contains:NA ****
+aptenodytes_forsteri	anolis_carolinensis	1	NA	1	contains:NA ****
+aptenodytes_forsteri	aptenodytes_forsteri	17	NA	17	contains:aptenodytes_forsteri***
+aptenodytes_forsteri	both_finches	1	NA	1	contains:aptenodytes_forsteri *
+aptenodytes_forsteri	egret_penguin	1	NA	1	contains:aptenodytes_forsteri *
+cuculus_canorus	anas_platyrhynchos	1	NA	1	contains:NA ****
+cuculus_canorus	anolis_carolinensis	3	NA	3	contains:NA ****
+cuculus_canorus	both_finches_crow	1	NA	1	contains:cuculus_canorus *
+cuculus_canorus	both_finches_crow_manakin	1	NA	1	contains:cuculus_canorus *
+cuculus_canorus	cuculus_canorus	66	NA	66	contains:cuculus_canorus***
+cuculus_canorus	taeniopygia_guttata	1	NA	1	contains:NA ****
+anolis_carolinensis	anolis_carolinensis	45	NA	45	contains:anolis_carolinensis***
+anolis_carolinensis	both_finches_crow	1	NA	1	contains:anolis_carolinensis *
+anolis_carolinensis	columba_livia	1	NA	1	contains:NA ****
+anolis_carolinensis	neognathae	3	NA	3	contains:anolis_carolinensis *
+anolis_carolinensis	taeniopygia_guttata	3	NA	3	contains:NA ****
+struthio_camelus	neognathae	3	NA	3	contains:struthio_camelus *
+struthio_camelus	struthio_camelus	13	NA	13	contains:struthio_camelus***
+struthio_camelus	taeniopygia_guttata	1	NA	1	contains:NA ****
+egretta_garzetta	anolis_carolinensis	1	NA	1	contains:NA ****
+egretta_garzetta	both_finches_crow_manakin	2	NA	2	contains:egretta_garzetta *
+egretta_garzetta	egretta_garzetta	20	NA	20	contains:egretta_garzetta***
+egretta_garzetta	taeniopygia_guttata	3	NA	3	contains:NA ****
