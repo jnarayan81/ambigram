@@ -1,0 +1,22 @@
+# comment lines are ignored;
+# end directory names with '/' charactere whenever possible
+# you can reference the TROUVER_dir in the other parameters by writing "$quadra_dir", when applicable (path to directories or files)
+
+-=-=-= BASIC PARAMETER FOR LOCATION AND FILE NAME =-=-=-
+
+reads_dir = /home/jitendra/ETC/ambigram/ambigram2/sampleDATA/
+
+-=-=-= PATH TO EXTERNAL PROGRAMS USED BY quadraG =-=-=-
+
+#bwakit = /home/jitendra/ETC/Sanyojan/bwa.kit/bwa
+
+-=-=-= PARAMETERS FOR INTERNAL USE =-=-=-
+
+result_table = final_results.out                  # file with the final result in tsv format (tab spaced values).
+result_uncertain = uncertain.out                  # file with the list of clusters where the null hypotesis can't be ignored by the positive evidence. Leave empty if you do not desire to produce this list
+result_positive = positive.out                    # file with the list of clusters with evidence of positive selection.
+
+summary = summary.out
+intermediate = quadra.q4
+log_file = final_log.log                          # log file name
+log_path = $quadra_dir/log/                         # path where log file will be created

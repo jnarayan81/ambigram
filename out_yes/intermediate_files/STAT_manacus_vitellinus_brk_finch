@@ -1,0 +1,13 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+manacus_vitellinus	25	25:25	25	0	TarRecon	16	2	 7 	 0
+
+..........
+Hello USER, ...........manacus_vitellinus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/manacus_vitellinus_brk_finch.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+both_finches_crow_manakin	3	NA	3
+gallus_gallus	3	NA	3
+manacus_vitellinus	19	NA	19

@@ -1,0 +1,23 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+columba_livia	77	77:73	77	0	TarRecon	52	6	 19 	 0
+
+..........
+Hello USER, ...........columba_livia analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/columba_livia_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anolis_carolinensis	2	NA	2
+columba_livia	68	NA	68
+g3	1	NA	1
+g7	1	NA	1
+taeniopygia_guttata	1	NA	1
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/columba_livia_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
+1590	255992	374522	34.3299461948682	NA	1	breakpoints	columba_livia:0.973568281938326	singleClass	singleBrk	1	26	2427240	26	3216238	26	2466042	26	3216238	NA	NA	NA	26	3157581--3216238	Gap	NA,Gap	NC	NCA	both_finches_crow_manakin:0.946714599949179	columba_livia	columba_livia
+176	452824	457597	179030.03669365	34.2676329122591	1	breakpoints	columba_livia:0.973568281938326	sameClass	sameBrk	2	26	2206254	26	246498	26	2294615	26	246498	NA	NA	NA	26	126009--246498	Gap	NA,Gap	NC	NCA	cuculus_canorus:0.993377483443709	NCA	NFD
+454	578782	579994	179030.03669365	34.2676329122591	1	breakpoints	columba_livia:0.973568281938326	sameClass	sameBrk	2	26	1836949	26	1060121	26	1835292	26	1060121	NA	NA	NA	26	1057452--1060121	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+7	17495883	17618110	73.5684437718892	NA	1	breakpoints	columba_livia:0.973568281938326	singleClass	singleBrk	1	8	28628481	8	5074000	8	29532845	8	5074000	NA	NA	NA	8	5073954--5074000	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD

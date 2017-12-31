@@ -1,0 +1,20 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+struthio_camelus	20	20:17	20	0	TarRecon	6	1	 13 	 0
+
+..........
+Hello USER, ...........struthio_camelus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/struthio_camelus_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+neognathae	3	NA	3
+struthio_camelus	13	NA	13
+taeniopygia_guttata	1	NA	1
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/struthio_camelus_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
+101	280130	414489	14.7142857142857	NA	1	breakpoints	struthio_camelus:0.98936170212766	singleClass	singleBrk	1	2	55627400	2	77447974	2	55645632	2	77447974	2	55627400--55728993	Gap	2	77446820--77447974	Gap	Gap,Gap	anolis_carolinensis:0.967078189300411	NCA	NC	NCA	NFD
+135	6352933	6353133	14.7142857142857	1.7709343240589	1	breakpoints	struthio_camelus:0.98936170212766	sameClass	sameBrk	2	2	49658212	2	44970269	2	49909216	2	44970269	NA	NA	NA	2	44931424--44970269	Gap	NA,Gap	NC	NCA	NC	NCA	NFD
+98	2214943	2228805	14.7142857142857	NA	1	breakpoints	struthio_camelus:0.98936170212766	singleClass	singleBrk	1	2	55410558	2	79887089	2	56374109	2	79887089	NA	NA	NA	2	79822872--79887089	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD

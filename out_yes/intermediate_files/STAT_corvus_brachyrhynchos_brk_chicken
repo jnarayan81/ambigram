@@ -1,0 +1,23 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+corvus_brachyrhynchos	29	29:21	29	0	TarRecon	18	6	 5 	 0
+
+..........
+Hello USER, ...........corvus_brachyrhynchos analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/corvus_brachyrhynchos_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+corvus_brachyrhynchos	21	NA	21
+
+
+MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/corvus_brachyrhynchos_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
+14	19126321	19134069	228.146452333299	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	3	73600034	3	44674786	3	73980625	3	44674786	NA	NA	NA	3	44674159--44674786	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+209	749028	782473	3947.25	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	57269998	1	73177545	1	57287297	1	73177545	NA	NA	NA	1	73158092--73177545	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+209	1025559	1171543	3947.25	392.965917355915	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	sameClass	sameBrk	2	1	73509502	1	67311734	1	73420631	1	67311734	NA	NA	NA	1	67310626--67311734	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+209	2129917	2132901	3947.25	116.354922293562	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	68321150	1	68321162	1	68270108	1	68321162	NA	NA	NA	1	68321150--68321162	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+209	2255585	2335928	3947.25	3947.25	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	sameClass	sameBrk	2	1	68447794	1	66949383	1	68443846	1	66949383	NA	NA	NA	1	66925476--66949383	Breakpoints	NA,Breakpoints	NC	NCA	manacus_vitellinus:0.993377483443709	NCA	NFD
+27	962652	964366	3947.25	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	56536504	1	57270002	1	56563710	1	57270002	NA	NA	NA	1	57269998--57270002	Gap	NA,Gap	NC	NCA	NC	NCA	NFD
+3	1658153	2059945	182.715159926093	6.19652340400074	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	diffClass	sameBrk	2	1	194052034	1	103284143	1	193624957	1	103284143	NA	NA	NA	1	103281215--103284143	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+6	1213598	1216447	228.146452333299	32.8333333333333	1	breakpoints	corvus_brachyrhynchos:0.974789915966387	sameClass	sameBrk	2	3	46286050	3	51428837	3	46365559	3	51428837	NA	NA	NA	3	51428794--51428837	Gap	NA,Gap	NC	NCA	neognathae:0.967078189300411	NCA	NFD

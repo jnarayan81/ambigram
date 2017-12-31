@@ -1,0 +1,59 @@
+#-----------------------------------------------------------------------------------------------------------------------------
+#---PROJECT PARAMETERS---
+
+data_dir = /home/jitendra/ETC/Sanyojan/sampleDATA
+out_dir =/home/jitendra/ETC/ambigram/ambigram2/out
+
+#-----------------------------------------------------------------------------------------------------------------------------
+#---GENERAL SETTINGS
+
+mode = del	 	# main analysis mode. Currently quadra supports only gene and random models analysis.
+max_processors = 1	# Number of processor for BLAST only
+verbose = 1      	# Print all detail #1 to print nice log messages telling you what is going on. 0 otherwise
+force=1
+mismatch=1   		# Zero is by default
+reverse=1    		# 1 for yes 0 for no
+overlaps=1		# 1 to remove and 0 to keep
+extend=5000		#extend=5000 #Extend the size of all breakspoints before checking 
+chekerExtend=100	#chekerExtend=100 # Extend the size of the breakpoints regions
+palsize=10		# Size of the palindrome to consider positive
+
+check=1                 # Check the q4 region in GFF file provided 1 to yes else 0
+kmer=4			#Kmer for assembly
+strict=yes		#stricted while reconstructing brks ... does not consider GAP brks at all 
+
+#REsolution you interested into
+resolution=100			#Kmer for assembly
+
+#Location of first ref EBA out folder
+ref1=/home/jitendra/ETC/ambigram/ambigram2/Taegut
+ref1Name=finch
+snameRef1=taeniopygia_guttata
+
+#Location of second ref EBA out folder
+ref2=/home/jitendra/ETC/ambigram/ambigram2/Galgal
+ref2Name=chicken
+snameRef2=gallus_gallus
+
+
+threshold=1.1 #score diff
+len=0
+
+#--------------------------------------------------------------------------------------------------------------------------
+#---GENERAL PENALTY
+mutation=-1		# Penalise the mutation
+score=0			# Score to filter out weak hits and plot/stats
+consider=4 		# In case of polyG what should be minimum G size to consider
+
+#--------------------------------------------------------------------------------------------------------------------------
+# ---BASE FILES
+
+#reference_genome_gff =  /home/jitendra/myDATA/quadraG4v0.1/sample.gff   # genome reference name, leave blank for none (same name used in fasta file)
+
+reference_genome_gff =  /home/jitendra/ETC/quadraG/Adineta_vaga.v2.gff3  # genome reference name, leave blank for none (same name used in fasta file)
+
+#--------------------------------------------------------------------------------------------------------------------------
+#---THIRD-PARTY SOFTWARE CONFIGURATION---
+
+#multiple_alignment = bwa # program used for multiple sequence alignment. Possible values are   !!!!
+                          # bowtie, bwa and segemehal
