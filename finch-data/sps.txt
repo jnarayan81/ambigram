@@ -1,1 +1,0 @@
-columba_livia,corvus_brachyrhynchos,anas_platyrhynchos,gallus_gallus,geospiza_fortis,manacus_vitellinus,aptenodytes_forsteri,cuculus_canorus,anolis_carolinensis,struthio_camelus,egretta_garzetta
