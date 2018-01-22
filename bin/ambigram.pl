@@ -126,7 +126,7 @@ my $param_ref = read_config_files(\$project_config_file, \$ambigram_path);  # st
 # Check all the parameters for their correctness
 parameters_validator($param_ref); #checkin if user set the parameters right
 
-my ($SpsArray_ref, $SpsNumber, $SpsArrayTabed) = storeSPS("$param_ref->{ref1}/sps.txt", $param_ref);
+my ($SpsArray_ref, $SpsNumber, $SpsArrayTabed) = storeSPS("$param_ref->{ref1}/sps.txt","$param_ref->{ref2}/sps.txt", $param_ref);
 
 #---------------------------------------
 if ( ($reconstruct) or ($full) ){
@@ -139,7 +139,7 @@ else { die("Directory $param_ref->{out_dir} already exists.\n"); }
 
 if (!-e "$param_ref->{out_dir}/results") { mkdir ("$param_ref->{out_dir}/results") || die ("Couldn't create the directory with the results of ambigram's analysis.\nDetails: $!\n"); }
 if (!-e "$param_ref->{out_dir}/intermediate_files") { mkdir ("$param_ref->{out_dir}/intermediate_files/") || die ("Couldn't create the directory with the steps of ambigram's analysis.\nDetails: $!\n"); }
-if (!-e "$param_ref->{out_dir}/intermediate_files/quadra") { mkdir ("$param_ref->{out_dir}/intermediate_files/quadra") || die ("Couldn't create the directory with the steps of ambigram's analysis.\nDetails: $!\n"); }
+if (!-e "$param_ref->{out_dir}/intermediate_files/ambi") { mkdir ("$param_ref->{out_dir}/intermediate_files/ambi") || die ("Couldn't create the directory with the steps of ambigram's analysis.\nDetails: $!\n"); }
 if (!-e "$param_ref->{out_dir}/intermediate_files/stat") { mkdir ("$param_ref->{out_dir}/intermediate_files/stat") || die ("Couldn't create the directory with the steps of ambigram's analysis.\nDetails: $!\n"); }
 
 #Copy file to the locations
@@ -150,16 +150,19 @@ open (LOG, ">", "$param_ref->{out_dir}/log.$nam") || die ('Could not create log 
 open (LOG_ERR, ">", "$param_ref->{out_dir}/log.err.$nam") || die ('Could not create log.err file in ', $param_ref->{out_dir}, '. Please check writing permission in your current directory', "\n");
 open (SUMMARY, ">", "$param_ref->{out_dir}/results/$param_ref->{summary}.$nam") || die ('Could not create summary file. Please check writing permission in your current directory', "\n");
 
-open (INTERMEDIATE, ">", "$param_ref->{out_dir}/intermediate_files/quadra/$param_ref->{intermediate}") || die ('Could not create all_quadra file. Please check writing permission in your current directory', "\n");
+open (INTERMEDIATE, ">", "$param_ref->{out_dir}/intermediate_files/ambi/$param_ref->{intermediate}") || die ('Could not create all_ambi file. Please check writing permission in your current directory', "\n");
 
 concatAll("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{ref1}/$param_ref->{resolution}");
 
 concatAll("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{ref2}/$param_ref->{resolution}");
 
-print "WORKS WELL $param_ref->{resolution} \n";
-reconstructTar("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", $SpsArray_ref, $SpsNumber, "$param_ref->{ref1Name}", $param_ref);
+storeClasses("$param_ref->{ref1}/classification.eba", "$param_ref->{ref1}/sps.txt", $param_ref, $param_ref->{snameRef1}, $param_ref->{ref1});
+storeClasses("$param_ref->{ref2}/classification.eba", "$param_ref->{ref2}/sps.txt", $param_ref, $param_ref->{snameRef2}, $param_ref->{ref2});
 
-reconstructTar("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", $SpsArray_ref, $SpsNumber, "$param_ref->{ref2Name}", $param_ref); # I assume the name of the species in both cases are the same $SpsArray_ref
+print "WORKS WELL $param_ref->{resolution} \n";
+reconstructTar("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", "$param_ref->{ref1}/sps.txt", $SpsNumber, "$param_ref->{ref1Name}", $param_ref);
+
+reconstructTar("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", "$param_ref->{ref2}/sps.txt", $SpsNumber, "$param_ref->{ref2Name}", $param_ref); # concated both species name in $SpsArray_ref
 
 }
 
@@ -174,8 +177,17 @@ openLogErr($nam);
 my ($sequence_data_ref, $id2tmp_id_ref, $tmp_id2id_ref) = parse_genome($param_ref);
 
 foreach my $spsName (@$SpsArray_ref) {
-	next if $param_ref->{snameRef1} eq $spsName or $param_ref->{snameRef2} eq $spsName;
-	print "Working on species: $spsName\n";
+	print "Working on species: $spsName\n";	
+	#Lets create the reference based breakpoints stats
+	if ($param_ref->{snameRef1} eq $spsName) {
+		tar2ref("$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$param_ref->{snameRef1}"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/OUT_$param_ref->{snameRef1}"."_brk_$param_ref->{ref1Name}", "$param_ref->{snameRef1}", $SpsNumber, "$param_ref->{out_dir}/intermediate_files/STAT_$param_ref->{snameRef1}"."_brk_$param_ref->{ref1Name}");
+	next;
+	}
+	elsif ($param_ref->{snameRef2} eq $spsName) {
+		tar2ref("$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$param_ref->{snameRef2}"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/OUT_$param_ref->{snameRef2}"."_brk_$param_ref->{ref2Name}", "$param_ref->{snameRef2}", $SpsNumber, "$param_ref->{out_dir}/intermediate_files/STAT_$param_ref->{snameRef2}"."_brk_$param_ref->{ref2Name}");		
+		#tar2ref("gallus_gallus_brk_finch.tar3", "final_classify_chicken.eba7", "see", "gallus_gallus", 11, "aaa");
+	next;	
+	}
 
  	checkOverlapsTAR ("$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$spsName"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$spsName"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{out_dir}/intermediate_files/OUT_$spsName"."_brk_$param_ref->{ref1Name}", $spsName, $SpsNumber, "$param_ref->{extend}", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all_all.eba00", "$param_ref->{ref1}/sps.txt", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "aaaa", "$param_ref->{out_dir}/intermediate_files/STAT_$spsName"."_brk_$param_ref->{ref1Name}", $spsName, "$param_ref->{out_dir}/intermediate_files/stat/finalOut_$param_ref->{ref1Name}","$param_ref->{out_dir}/intermediate_files/stat/missedOut_$param_ref->{ref1Name}", "$param_ref->{ref2}/classification.eba", "$param_ref->{chekerExtend}", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/stat/countSTAT_$param_ref->{ref1Name}");
 
@@ -199,12 +211,12 @@ if (!$param_ref->{check}) { print LOG_ERR "You set NOT to check option in config
 
 if ($param_ref->{check}==1) { # Set zero in conf, if not interested
 	print LOG "Checking in user provided GFF file for G4 associated features\n";
-	if (!"$param_ref->{out_dir}/intermediate_files/quadra/final.q4") { print LOG_ERR "Missing final.q4 file; You might need to run --reconstruct first\n";}
- 	checkInGFF("$param_ref->{out_dir}/intermediate_files/quadra/final.q4", "$param_ref->{reference_genome_gff}", "$param_ref->{out_dir}/intermediate_files/quadra/final_annotated.q4", $param_ref->{extend} );
+	if (!"$param_ref->{out_dir}/intermediate_files/ambi/final.q4") { print LOG_ERR "Missing final.q4 file; You might need to run --reconstruct first\n";}
+ 	checkInGFF("$param_ref->{out_dir}/intermediate_files/ambi/final.q4", "$param_ref->{reference_genome_gff}", "$param_ref->{out_dir}/intermediate_files/ambi/final_annotated.q4", $param_ref->{extend} );
 
 }
 
-analyticStat("$param_ref->{out_dir}/intermediate_files/quadra/final_annotated.q4", "$param_ref->{out_dir}/intermediate_files/stat/final_annotated.q4.stat", $param_ref->{score}, $sequence_data_ref);
+analyticStat("$param_ref->{out_dir}/intermediate_files/ambi/final_annotated.q4", "$param_ref->{out_dir}/intermediate_files/stat/final_annotated.q4.stat", $param_ref->{score}, $sequence_data_ref);
 }
 
 #---------------------------------------

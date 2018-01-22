@@ -907,19 +907,28 @@ sub dbjGraph {
 
 #Store SPS detail
 sub storeSPS {
-my ($spsFile, $param) = @_;
-my @SpsArray; my $SpsNumber;
+my ($spsFile, $spsFile2, $param) = @_;
+my @SpsArray; my $SpsNumber; my @SpsArray2; my $SpsNumber2;
 open SPSFILE, "$spsFile" or die "cant open .sps file $!";
 while (<SPSFILE>) { 
 	my $SpsLine=$_; chomp $SpsLine; @SpsArray=split /,/, lc($SpsLine);  $SpsNumber = scalar (@SpsArray); } 
 	my $SpsArrayTabed=join("\t", @SpsArray); 
 close SPSFILE or die "could not close file: $!\n";
-return (\@SpsArray, $SpsNumber, $SpsArrayTabed);
+
+open SPSFILE2, "$spsFile2" or die "cant open .sps file $!";
+while (<SPSFILE2>) { 
+	my $SpsLine2=$_; chomp $SpsLine2; @SpsArray2=split /,/, lc($SpsLine2);  $SpsNumber2 = scalar (@SpsArray2); } 
+	my $SpsArrayTabed2=join("\t", @SpsArray2); 
+close SPSFILE2 or die "could not close file: $!\n";
+
+my @outArray = keys %{{map {($_ => 1)} (@SpsArray, @SpsArray2)}}; #Combine both array by removing duplicates
+
+return (\@outArray, $SpsNumber, $SpsArrayTabed);
 }
 
 ##Recontruct the breakpoints
 sub reconstructTar {
-my ($finalEBA, $allHSB, $threshold, $length, $SpsArray, $SpsNumber, $refName, $param)=@_;
+my ($finalEBA, $allHSB, $threshold, $length, $spsFile, $SpsNumber, $refName, $param)=@_;
 
 my $version=0.1;
 
@@ -931,7 +940,19 @@ if (-f "Reconstruction_$refName.stats") { unlink "Reconstruction_$refName.stats"
 my $InFile=$finalEBA; #final_classify.eba file
 print "$InFile\n";
 my $threshold=$threshold; # threhold value to filter
-foreach my $spsName(@$SpsArray) {
+
+#Store species
+my @SpsArray; my $SpsNumber;
+open SPSFILE, "$spsFile" or die $!;
+if (-f "Reconstruction_$refName.stats") { unlink "Reconstruction_$refName.stats";}
+while (<SPSFILE>) { 
+	my $SpsLine=$_; chomp $SpsLine; @SpsArray=split /,/, lc($SpsLine);  $SpsNumber = scalar (@SpsArray); } ## It read the species names from sps.txt file ... need to improve !!!
+	my $SpsArrayTabed=join("\t", @SpsArray); 
+
+close SPSFILE or die "could not close file: $!\n";
+
+
+foreach my $spsName(@SpsArray) {
 my $outFile1="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar1";
 my $outfile2="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar2";
 my $outfile3="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar3";
@@ -1843,6 +1864,136 @@ close $infh;
 
 }
 
+
+sub tar2ref {
+my ($filename, $filename2, $filename3, $spsName, $spsNum, $statOut)= @_;
+#User need to provide the TAR reconstructed.e and final_classify.eba7 file ... see the commandline usage below for more detail   
+#USAGE perl checkOverlaps.pl <filenameReconstructed.e> <final_classify.eba7> <OutFileName> <NameORgroupLookinFor> <spsNum>
+
+#my $filename = "$ARGV[0]";
+#my $filename3 = "$ARGV[2]";
+open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
+open(my $fh3, '>:encoding(UTF-8)', $filename3) or die "Could not open file '$filename3' $!";
+
+my %count; my %countONE; my %countOTHER;my %countTarClass; my $allCount=0;my %allClass; my $flag=0; my @allCor;
+my $sameClass_sameBrk=0; my $diffClass_sameBrk=0; my $singleClass_singleBrk=0; my $NA=0;
+my @missinBrk;
+
+while (my $row = <$fh>) {
+chomp $row;
+next if $. == 1;
+my @tmp1 = split('\t', $row);
+no warnings; # To avoid warnings for blank spaces
+my @cla =split('\:', $tmp1[7]);
+next if $cla[0] ne $spsName; # group or species name provided by user
+$countTarClass{$cla[0]}++;
+push @allCor, "$tmp1[0]:$tmp1[1]:$tmp1[2]";
+
+if ($tmp1[8] eq "sameClass" and $tmp1[9] eq "sameBrk") { $sameClass_sameBrk++; }
+elsif ($tmp1[8] eq "diffClass" and $tmp1[9] eq "sameBrk") { $diffClass_sameBrk++; }
+elsif ($tmp1[8] eq "singleClass" and $tmp1[9] eq "singleBrk") { $singleClass_singleBrk++; }
+else { $NA++; }
+
+#my $filename2 = "$ARGV[1]";
+my $done=0;
+open(my $fh2, '<:encoding(UTF-8)', $filename2) or die "Could not open file '$filename2' $!";
+
+ 	while (my $row2 = <$fh2>) {
+	chomp $row2;
+	next if $.==1;
+	my @values2 = split('\t', $row2);
+	#my $spsNum=$ARGV[4];
+	my @cor =split('\--', $values2[$spsNum+2]);
+	my @class =split('\:', $values2[$spsNum+7]);
+	if ($flag==0) {$allClass{$class[0]}++;}
+	
+
+	if ($values2[$spsNum+1] eq $tmp1[0]) { 
+		my $OverRes = checkOverlaps($cor[0],$cor[1],$tmp1[1],$tmp1[2]);
+		if ($OverRes) {
+  		 	$count{$class[0]}++;
+			$allCount++;
+			if ($values2[$spsNum+9] == 1) {$countONE{$class[0]}++;} else {$countOTHER{$class[0]}++;}
+			print $fh3 "$row\t\t$row2\n";   
+			$done=1;
+     			}
+		}
+	}
+$flag=1; # To check the final_classify.eba7 once
+
+close $fh2;
+if ($done != 1) { push @missinBrk, $row;}
+}
+close $fh;
+close $fh3;
+
+my $multiHits="$countTarClass{$spsName}:$allCount";
+my $uniqueRecoEBRs= uniq (@allCor);
+
+
+#Create a file for detail stats
+open(my $outSTAT, '>:encoding(UTF-8)', $statOut) or die "Could not open file '$statOut' $!";
+
+my $message = <<"END_MSG";
+
+..........
+Hello USER, ...........$spsName analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+END_MSG
+
+
+## Printing the TAR reconstructed Info
+print $outSTAT "Overview of reconstructed table detail\n";
+print $outSTAT "Species/Group Name \t Total Number of reconstructed EBRs \t Multiple Hits in reference table \t Unique reconstructed EBRs \t Duplicates reconstructed EBRs\t Tar\t sameClass_sameBrk \t diffClass_sameBrk \t singleClass_singleBrk \t Others\n";
+
+foreach my $class (sort keys %countTarClass) {  # This will be only one as user check for indivisual
+my $difference=($countTarClass{$class}-$uniqueRecoEBRs);
+print $outSTAT "$class\t$countTarClass{$class}\t$multiHits\t$uniqueRecoEBRs\t$difference\tTarRecon\t$sameClass_sameBrk\t$diffClass_sameBrk\t $singleClass_singleBrk \t $NA\n"; }
+
+print $outSTAT $message;
+
+print $outSTAT "Reconstructed EBRs overlapping details\n";
+print $outSTAT "Species/Group Name \t Total Number of Overlapping EBRs \t Ratio_ONE \t Ratio_OTHER\n";
+foreach my $str (sort keys %count) { print $outSTAT "$str\t$count{$str}\t$countONE{$str}\t$countOTHER{$str}\n"; }
+
+
+if (@missinBrk){
+print $outSTAT "\n\nMISSED OVERLAPS EBRs------------>>>\n";
+print $outSTAT "chr\tstart\tend\tfirstBestratio\tsecondBestRatio\tPercentageUsed\tBrk\tclass\tsameordiffClass\tsameordiffBrk\tborderUsed\n";
+foreach my $v (@missinBrk) { print $outSTAT "$v\n";}
+}
+
+
+#sum all hits values
+use List::Util 'sum';
+my $value_count = sum values %count;
+
+}
+
+
+sub storeClasses {
+my ($inClass, $inSps, $param, $name, $location) = @_;
+
+open(my $infh, '<:encoding(UTF-8)', $inClass) or die "Could not open file '$inClass' $!";
+my @allClass;
+while (<$infh>) {
+	chomp $_; my $line=$_;
+	$line=trim($line);
+	next if $line =~ /^\s*$/;
+	my @tmpLine = split /\=/, $line;
+	if (($tmpLine[0] ne "lineage") and ( $tmpLine[0] ne $name)) { push @allClass, $tmpLine[0]; }
+}
+my $classString=join ',', @allClass; 
+copy($inSps,"$param->{out_dir}/sps_$name.txt") or die "Copy failed: $!";
+
+open(my $fh, '>>', "$param->{out_dir}/sps_$name.txt") or die "Could not open file '$param->{out_dir}/sps_$name.txt' $!";
+say $fh "$classString";
+close $fh;
+
+print "$classString\n";
+
+}
 
 1;
 
