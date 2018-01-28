@@ -10,17 +10,17 @@ use vars qw($matchStart);
 sub overlapsHelp {
   my $ver = $_[0];
   print "\n  ambigram --overlaps $ver \n\n";
-  print "    Usage: ambigram.pl --overlaps/-d --conf/-c <configuration file>\n\n";
+  print "    Usage: ambigram.pl --overlaps/-o --conf/-c <configuration file>\n\n";
   print "    To overlaps reads sequences into sanjivani reads\n\n";
   print "    The path to a valid ambigram configuration file. This file contains all parameters needed to execute  ambigram.\n\n";
 
 exit(1);
 }
 
-sub overlapHelp {
+sub reconstructHelp {
   my $ver = $_[0];
-  print "\n  ambigram --overlap $ver \n\n";
-  print "    Usage: ambigram.pl --overlap/-m --conf/-c <configuration file>\n\n";
+  print "\n  ambigram --reconstruct $ver \n\n";
+  print "    Usage: ambigram.pl --reconstruct/-r --conf/-c <configuration file>\n\n";
   print "    To overlap the direct overllaping strings/reads sequences\n\n";
   print "    The path to a valid ambigram configuration file. This file contains all parameters needed to execute  ambigram.\n\n";
 
@@ -30,7 +30,7 @@ exit(1);
 sub annotHelp {
   my $ver = $_[0];
   print "\n  ambigram --annot $ver \n\n";
-  print "    Usage: ambigram.pl --annot/-p --conf/-c <configuration file>\n\n";
+  print "    Usage: ambigram.pl --annot/-x --conf/-c <configuration file>\n\n";
   print "    To annotate the ambigram results \n\n";
   print "    The path to a valid ambigram configuration file. This file contains all parameters needed to execute  ambigram.\n\n";
 
@@ -42,6 +42,16 @@ sub fullHelp {
   print "\n  ambigram --full $ver \n\n";
   print "    Usage: ambigram.pl --full/-f --conf/-c <configuration file>\n\n";
   print "    To run complete in one GO \n\n";
+  print "    The path to a valid ambigram configuration file. This file contains all parameters needed to execute  ambigram.\n\n";
+
+exit(1);
+}
+
+sub ancestralHelp {
+  my $ver = $_[0];
+  print "\n  ambigram --ancestral $ver \n\n";
+  print "    Usage: ambigram.pl --ancestral/-a --conf/-c <configuration file>\n\n";
+  print "    To run ancestral breakpoint checks \n\n";
   print "    The path to a valid ambigram configuration file. This file contains all parameters needed to execute  ambigram.\n\n";
 
 exit(1);
@@ -105,22 +115,22 @@ sub read_config_files {
   $param{mutation} = read_config('mutation', '', $user_config);
   $param{score} = read_config('score', '', $user_config);
   $param{consider} = read_config('consider', '', $user_config);
-  
-  
+
+
 #GENERAL SETTINGS
   $param{mode} = read_config('mode', '', $user_config);
 
-# QUALITY AND PERFORMANCE --->  
+# QUALITY AND PERFORMANCE --->
   $param{max_processors} = read_config('max_processors', '', $user_config);
 
   close($user_config);
 
 # PATH TO EXTERNAL PROGRAMS --->
- 
+
   #$param{bedtools_path} = read_config('bedtools', $param{reads_dir}, $ambigram_config);
 
 # OUTPUT NAMES --->
-  $param{result_table} = read_config('result_table', '', $ambigram_config); 
+  $param{result_table} = read_config('result_table', '', $ambigram_config);
   $param{result_uncertain} = read_config('result_uncertain', '', $ambigram_config);
   $param{result_positive} = read_config('result_positive', '', $ambigram_config);
   $param{summary} = read_config('summary', '', $ambigram_config);
@@ -154,7 +164,7 @@ sub read_config { # file format element = value
 
 ############################################################################################""
 # function to identify errors in the configuration files and direct the user to the needed adjustments
-sub parameters_validator { #check for all parameters, 
+sub parameters_validator { #check for all parameters,
   my $param = shift;
 
   my $config_path = getcwd();
@@ -178,7 +188,7 @@ sub parameters_validator { #check for all parameters,
   if (!defined $param->{mismatch}) { $param->{mismatch} = 0; } # default value
   if (!defined $param->{reverse}) { $param->{reverse} = 0; } # default value
   if (!defined $param->{overlaps}) { $param->{overlaps} = 0; } # default value 0 to keep all
-  if (!defined $param->{extend}) { $param->{extend} = 0; } # default value 0 
+  if (!defined $param->{extend}) { $param->{extend} = 0; } # default value 0
 
 # EXTERNAL ERROR HANDLING --->
   if (!defined $param->{tries} || $param->{tries} !~ /^\d+$/) { $param->{tries} = 3; } # must be a number, and not a negative one; also must be an integer
@@ -202,7 +212,7 @@ sub parse_genome {
     while (my $gene_info = $file_content->next_seq()) {
       my $sequence = $gene_info->seq();
       my $len = length ($sequence);
-      my $accession_number = $gene_info->display_id; 
+      my $accession_number = $gene_info->display_id;
       $sequence_data{$accession_number}{status} = "OK"; #everybody starts fine
       $sequence_data{$accession_number}{problem_desc} = "-"; #everybody starts fine
       if ($sequence_data{$accession_number}{status} eq "OK") { # Add check points here <<<<<<
@@ -365,7 +375,7 @@ sub processGCAT {
     my $sequence = shift;
     my @letters = split(//, $sequence);
     my $gccount = 0; my $totalcount = 0; my $gccontent = 0;
-    my $acount = 0; my $tcount = 0; my $gcount = 0; my $ccount = 0; my $atcontent =0; 
+    my $acount = 0; my $tcount = 0; my $gcount = 0; my $ccount = 0; my $atcontent =0;
     foreach my $i (@letters) {
 	if (lc($i) =~ /[a-z]/) { $totalcount++;}
 	if (lc($i) eq "g" || lc($i) eq "c") { $gccount++; }
@@ -387,7 +397,7 @@ sub processGCAT {
 
 
 ########################################################################################"
-#Print the hash values 
+#Print the hash values
 sub print_hash_final {
     my ($href,$fhandler)  = @_;
     while( my( $key, $val ) = each %{$href} ) {
@@ -450,7 +460,7 @@ my ($accession_number, $sequence)=@_;
 
 	my $tmpf = new File::Temp( UNLINK => 1 );
 	print $tmpf ">$accession_number\n$sequence\n";
-	
+
 	my $SStat = &processGCAT($sequence);
 	my $seqLen = length($sequence);
 	my $gcSStat = (split /\t/, "$SStat")[0];
@@ -484,7 +494,7 @@ my $pattern = "G{2,5}.{1,7}G{2,5}.{1,7}G{2,5}.{1,7}G{2,5}";
 if ($param->{reverse}) {$rev=1;} else {$rev=0}
 for (my $aa=0; $aa<=$rev; $aa++) {  ## This loop to check the G4 twice, both for negative and positive.
 if ($aa == 1) { #Instead of reverse completement i reverse the pattern
-	#$pattern = "T{2,5}.{1,7}T{2,5}.{1,7}T{2,5}.{1,7}T{2,5}"; 
+	#$pattern = "T{2,5}.{1,7}T{2,5}.{1,7}T{2,5}.{1,7}T{2,5}";
         $sequence=rcomplement($sequence);
 	}
 
@@ -518,15 +528,15 @@ sub pmatches {
 
      $matchCor[0] =~ s/[^0-9]//g; $matchCor[1] =~ s/[^0-9]//g;
      my $len=$matchCor[1]-$matchCor[0];
-		
+
      my $mstring=substr ($sequence, $matchCor[0],$len );
 
 	if ($aa == 0) {
 	my $seqFreqG = checkFreq($mstring,"G",$diff, $param);
 	my $palRes = checkPal($mstring, $param); my $palDecision;
-	if ($palRes) { $palDecision=1;} else {$palDecision=0;} 
-	
-     #R(everse) and P(lush) 
+	if ($palRes) { $palDecision=1;} else {$palDecision=0;}
+
+     #R(everse) and P(lush)
      print INTERMEDIATE "$mstring\t$defLine\t$reference\t$matchCor[0]\t$matchCor[1]\t$diff\t$len\tP\t$seqFreqG\t$palDecision\n";
 	}
 	elsif ($aa ==1) {
@@ -546,8 +556,8 @@ my @all; my $finalScore=0; my $longString=0;
 while ($str =~ /($letter+)/g) {
 push @all, length($1);
 	@all = grep { $_ != 1 } @all; #Keep all except 1 (i.e delete 1)
-	
-	if (@all) {	
+
+	if (@all) {
 	my $max = (sort { $b <=> $a } @all)[0];
 	if ($max > $param->{consider}) { $longString=$max/$param->{consider}}
 	}
@@ -567,7 +577,7 @@ sub get_genome_sequence {
    my ($fpath) = @_;
    open GENOME, "<$fpath" or die "Can't open $fpath: $!\n";
    $_ = <GENOME>; # discard first line
-   my $sequence = ""; 
+   my $sequence = "";
    while (<GENOME>) {
       chomp($_);                  # Remove line break
       s/\r//;                     # And carriage return
@@ -708,7 +718,7 @@ my $palN=0; my $palY=0; my $strP=0; my $strR=0;
 			$str{$item->[7]}++;
 			}
 		$all++;
-    		}  
+    		}
 	}
 if ($pal{0}) { $palN=$pal{0};}
 if ($pal{1}) { $palY=$pal{1};}
@@ -738,10 +748,10 @@ my %feature;
 	if ($item->[11] eq $id) { if ($item->[9] >= $score) { $feature{$item->[13]}++; } } #$item->[9] >= 0 for score filter
 	}
 print $out "$id\t";
-my $len = $genome{$id}{len}; 
+my $len = $genome{$id}{len};
 
-foreach my $f(@$feature_ref) { 
-	if ($feature{$f}) { print $out "$feature{$f}/$len\t"; } 
+foreach my $f(@$feature_ref) {
+	if ($feature{$f}) { print $out "$feature{$f}/$len\t"; }
 	else { print $out "0\t";} }
 print $out "\n";
 }
@@ -753,10 +763,10 @@ sub extractFeature {
 my ($terms_ref)=@_;
 my @allIds;
 for my $item (@$terms_ref) {
-     if ($item->[13]) { push @allIds , $item->[13];} 
+     if ($item->[13]) { push @allIds , $item->[13];}
 }
-my @allIds_uniq=uniq(@allIds); 
-my @allIds_uniq_sorted = sort { lc($a) cmp lc($b) } @allIds_uniq; 
+my @allIds_uniq=uniq(@allIds);
+my @allIds_uniq_sorted = sort { lc($a) cmp lc($b) } @allIds_uniq;
 return \@allIds_uniq_sorted;
 }
 
@@ -765,7 +775,7 @@ sub extractIds {
 my ($terms_ref)=@_;
 my @allIds;
 for my $item (@$terms_ref) {
-     if ($item->[1]) { push @allIds , $item->[1];} 
+     if ($item->[1]) { push @allIds , $item->[1];}
 }
 my @allIds_uniq=uniq(@allIds);
 return \@allIds_uniq;
@@ -794,7 +804,7 @@ for my $term (sort sorter @terms) {
         print $out join "\t", @$term; print $out "\n";
         $biggest = $term->[4];
     }
-    $id = $term->[1];    
+    $id = $term->[1];
 }
 
 }
@@ -910,15 +920,15 @@ sub storeSPS {
 my ($spsFile, $spsFile2, $param) = @_;
 my @SpsArray; my $SpsNumber; my @SpsArray2; my $SpsNumber2;
 open SPSFILE, "$spsFile" or die "cant open .sps file $!";
-while (<SPSFILE>) { 
-	my $SpsLine=$_; chomp $SpsLine; @SpsArray=split /,/, lc($SpsLine);  $SpsNumber = scalar (@SpsArray); } 
-	my $SpsArrayTabed=join("\t", @SpsArray); 
+while (<SPSFILE>) {
+	my $SpsLine=$_; chomp $SpsLine; @SpsArray=split /,/, lc($SpsLine);  $SpsNumber = scalar (@SpsArray); }
+	my $SpsArrayTabed=join("\t", @SpsArray);
 close SPSFILE or die "could not close file: $!\n";
 
 open SPSFILE2, "$spsFile2" or die "cant open .sps file $!";
-while (<SPSFILE2>) { 
-	my $SpsLine2=$_; chomp $SpsLine2; @SpsArray2=split /,/, lc($SpsLine2);  $SpsNumber2 = scalar (@SpsArray2); } 
-	my $SpsArrayTabed2=join("\t", @SpsArray2); 
+while (<SPSFILE2>) {
+	my $SpsLine2=$_; chomp $SpsLine2; @SpsArray2=split /,/, lc($SpsLine2);  $SpsNumber2 = scalar (@SpsArray2); }
+	my $SpsArrayTabed2=join("\t", @SpsArray2);
 close SPSFILE2 or die "could not close file: $!\n";
 
 my @outArray = keys %{{map {($_ => 1)} (@SpsArray, @SpsArray2)}}; #Combine both array by removing duplicates
@@ -945,9 +955,9 @@ my $threshold=$threshold; # threhold value to filter
 my @SpsArray; my $SpsNumber;
 open SPSFILE, "$spsFile" or die $!;
 if (-f "Reconstruction_$refName.stats") { unlink "Reconstruction_$refName.stats";}
-while (<SPSFILE>) { 
+while (<SPSFILE>) {
 	my $SpsLine=$_; chomp $SpsLine; @SpsArray=split /,/, lc($SpsLine);  $SpsNumber = scalar (@SpsArray); } ## It read the species names from sps.txt file ... need to improve !!!
-	my $SpsArrayTabed=join("\t", @SpsArray); 
+	my $SpsArrayTabed=join("\t", @SpsArray);
 
 close SPSFILE or die "could not close file: $!\n";
 
@@ -962,21 +972,21 @@ open (OUTSTAT, ">>$param->{out_dir}/output_$refName/Reconstruction_$refName.stat
 
 	open INFILE,  $InFile or die "$0: open $InFile: $!";
 	my @array; my @index; my @nameArray; my $in; my $countReal; my @done; my $countBrk; my $countGap; my $total;
-	while (<INFILE>) { 
-		chomp; 
+	while (<INFILE>) {
+		chomp;
 		my $line=trim($_);
 		my @tmp = split /\t/, lc ($line);
-		if ($. == 1) { 
-			@nameArray = split /\t/, $line; 
-			(@index)= grep { $nameArray[$_] eq "$spsName" } 0..$#nameArray; 
-			$in=$index[0]; 
+		if ($. == 1) {
+			@nameArray = split /\t/, $line;
+			(@index)= grep { $nameArray[$_] eq "$spsName" } 0..$#nameArray;
+			$in=$index[0];
 			next;
 		}
 		next if $_ =~ /^\s*#/;
 		next if !$tmp[$in];
 
 		my @val = split /\,/, $tmp[$in];
-		
+
 		# In case more than one breakpoints ( separated with comma)
 		foreach my $l(@val) {
 		my $line=trim($l);
@@ -1031,12 +1041,12 @@ sub deldir {
   opendir(DIR, $dirtodel);
   my @files = readdir(DIR);
   closedir(DIR);
- 
+
   @files = grep { !/^\.{1,2}/ } @files;
   @files = map { $_ = "$dirtodel$sep$_"} @files;
- 
+
   @files = map { (-d $_)?deldir($_):unlink($_) } @files;
- 
+
   rmdir($dirtodel);
 }
 
@@ -1049,8 +1059,8 @@ my ($InFile, $OutFile, $spsName, $out, $threshold, $HSBInFile, $param) = @_;
 open INFILE,  $InFile or die "$0: open $InFile: $!";
 open (OUTFILE, ">$OutFile") or die "$0: open $OutFile: $!";
 	my %inArray;
-	while (<INFILE>) { 
-		chomp; 
+	while (<INFILE>) {
+		chomp;
 		if ($_ =~ /^\s*#/) { next; }
 		$_=trim($_);
 		my @array = split /\t/, lc($_);
@@ -1069,8 +1079,8 @@ open (OUTFILE, ">$OutFile") or die "$0: open $OutFile: $!";
 
 	open HSBFILE,  $HSBInFile or die "$0: open HSB file $HSBInFile: $!";
 	my @HSBArray;
-	while (<HSBFILE>) { 
-		chomp; 
+	while (<HSBFILE>) {
+		chomp;
 		if ($_ =~ /^\s*#/) { next; }
 		#chicken:100K	12	375235	955085	14	14785	688127	-	Meleagris_gallopavo	Chromosome
 		my @array = split /\t/, lc($_);
@@ -1103,13 +1113,13 @@ my ($InFile, $OutFile, $spsName, $threshold, $param)=@_;
 open (OUTFILE, ">$OutFile") or die "$0: open $OutFile: $!";
 	open INFILE,  $InFile or die "$0: open $InFile: $!";
 	my @array;
-	while (<INFILE>) { 
+	while (<INFILE>) {
 		chomp;
 		#next if $. == 1; ## to next the header -- no header in tar2
 		if ($_ =~ /^\s*#/) { next; }
 		$_=trim($_);
 		push (@array,$_); #Keep all  the tar2 in an array
-		
+
 	}
 	close INFILE or die "could not close $InFile file: $!\n";
 	#Sort this tar2 with target cordinate start and end
@@ -1126,14 +1136,14 @@ if (!$param->{strict}) {
 		if ($array_first[4] eq $array_next[4]) { #same chr
 			my $brkDecision; my $newScore; my $classNum; my $borNum; my $secClass;
 
-	#NOTE: first and last HSB coordinate will be ignored.  
+	#NOTE: first and last HSB coordinate will be ignored.
 	#taegut:100k	1a	61261345	62559310	1	68978907	70838383	+	anas_platyrhynchos	chromosomes	61258206--61261345=breakpoints+0.909090909090909	1a	taeniopygia_guttata:0.903687300801826	7221.5850129769	0.1818181818	11	2	9	breakpoints	62559310--62561208=breakpoints+0.863636363636364	1a	taeniopygia_guttata:0.904088631832987	3649.1507838237	0.2727272727	11	3	8	breakpoints
 
 
 	#taegut:100k	19	3015453	3143368	20	5478	207928	+	anas_platyrhynchos	chromosomes	3008057--3015453=breakpoints+0.863636363636364	19	taeniopygia_guttata:0.91030772058792	398.1409945019	0.2727272727	11	3	8	breakpoints	3143368--3164683=breakpoints+0.681818181818182	19	both_finches_crow:0.92773464582499	1	0.2727272727	11	3	6	breakpoints
 	#taegut:100k	19	87441	3008057	20	220685	2931079	+	anas_platyrhynchos	chromosomes	Tel									3008057--3015453=breakpoints+0.863636363636364	19	taeniopygia_guttata:0.91030772058792	398.1409945019	0.2727272727	11	3	8	breakpoints
 
-		
+
 			my @className1=split /\:/, $array_first[21];
 			my @className2=split /\:/, $array_next[12];
 			my $secBor; my $secBor2;
@@ -1143,17 +1153,17 @@ if (!$param->{strict}) {
 			$brkDecision="sameBrk"; $borNum=2;
 			if (($array_first[22] >= $array_next[13]) and ($array_first[22] >= $threshold) ) {
 					$secBor=$array_next[13]; $secClass=$array_next[12];
-					if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";} 
+					if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";}
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
-			elsif (($array_first[22] <= $array_next[13]) and ($array_next[13] >= $threshold) ) { 
+			elsif (($array_first[22] <= $array_next[13]) and ($array_next[13] >= $threshold) ) {
 					$secBor=$array_first[22]; $secClass=$array_first[21];
-					if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";}  
+					if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";}
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
 			elsif (($array_first[22] == $array_next[13]) and ($array_next[13] <= $threshold) ) { #since both are equal ... do not nned to check other brk cor
 					$secBor=$array_next[13]; $secClass=$array_next[12];
-					if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";} 
+					if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";}
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
 			}
@@ -1162,12 +1172,12 @@ if (!$param->{strict}) {
 			elsif (($array_first[27] eq "breakpoints") and ($array_next[18] eq "gap")) { #If sec is gap
 			if ($array_first[22] >= $threshold) {
 					$secBor=$array_next[13]; $secClass=$array_next[12];
-					$classNum="diffClass"; 
+					$classNum="diffClass";
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
-			elsif ($array_first[22] <= $threshold) { 
+			elsif ($array_first[22] <= $threshold) {
 					$secBor=$array_next[13]; $secClass=$array_next[12];
-					$classNum="diffClass"; 
+					$classNum="diffClass";
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
 			}
@@ -1176,12 +1186,12 @@ if (!$param->{strict}) {
 			elsif (($array_first[27] eq "breakpoints") and (!$array_next[18])) { #If sec is TEL empty
 			if ($array_first[22] >= $threshold) {
 					$secBor=$array_next[13]; $secClass="NA";
-					$classNum="diffClass"; 
+					$classNum="diffClass";
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
-			elsif ($array_first[22] <= $threshold) { 
+			elsif ($array_first[22] <= $threshold) {
 					$secBor=$array_next[13]; $secClass="NA";
-					$classNum="diffClass"; 
+					$classNum="diffClass";
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
 			}
@@ -1189,12 +1199,12 @@ if (!$param->{strict}) {
 			elsif (($array_first[27] eq "gap") and (!$array_next[18])) { #If sec is TEL empty
 			if ($array_first[22] >= $threshold) {
 					$secBor=$array_next[13]; $secClass="NA";
-					$classNum="diffClass"; 
+					$classNum="diffClass";
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
-			elsif ($array_first[22] <= $threshold) { 
+			elsif ($array_first[22] <= $threshold) {
 					$secBor=$array_next[13]; $secClass="NA";
-					$classNum="diffClass"; 
+					$classNum="diffClass";
 					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 				}
 			}
@@ -1204,12 +1214,12 @@ if (!$param->{strict}) {
 			elsif (($array_first[27] eq "gap") and ($array_next[18] eq "breakpoints")) { #If first is gap
 			if ($array_next[13] >= $threshold) {
 					$secBor=$array_first[22]; $secClass=$array_first[21];
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
-			elsif ($array_next[13] <= $threshold) { 
+			elsif ($array_next[13] <= $threshold) {
 					$secBor=$array_first[22]; $secClass=$array_first[21];
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
 			}
@@ -1217,12 +1227,12 @@ if (!$param->{strict}) {
 			elsif ((!$array_first[27]) and ($array_next[18] eq "breakpoints")) { #If first is TEL empty
 			if ($array_next[13] >= $threshold) {
 					$secBor=$array_first[22]; $secClass="NA";
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
-			elsif ($array_next[13] <= $threshold) { 
+			elsif ($array_next[13] <= $threshold) {
 					$secBor=$array_first[22]; $secClass="NA";
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
 			}
@@ -1230,12 +1240,12 @@ if (!$param->{strict}) {
 			elsif ((!$array_first[27]) and ($array_next[18] eq "gap")) { #If first is TEL empty
 			if ($array_next[13] >= $threshold) {
 					$secBor=$array_first[22]; $secClass="NA";
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
-			elsif ($array_next[13] <= $threshold) { 
+			elsif ($array_next[13] <= $threshold) {
 					$secBor=$array_first[22]; $secClass="NA";
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
 			}
@@ -1246,12 +1256,12 @@ if (!$param->{strict}) {
 
 			if ($array_next[13] >= $threshold) {
 					$secBor=$array_first[22]; $secClass=$array_first[21];
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
-			elsif ($array_next[13] <= $threshold) { 
+			elsif ($array_next[13] <= $threshold) {
 					$secBor=$array_first[22]; $secClass=$array_first[21];
-					$classNum="diffClass";  
+					$classNum="diffClass";
 					$newScore="$array_next[13]\t$secBor\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
 
@@ -1274,14 +1284,14 @@ if (!$param->{strict}) {
 				if ($array_first[27]) {
 				#print OUTFILE "$array_first[4]\t$array_first[6]\tEND\t$array_first[22]\t$array_first[13]\t$array_first[26]\t$array_first[27]\t$array_first[21]\tNA\tNA\tNA\tNA\t$array_first[1]\t$array_first[3]\tNA\tNA\n";
 				}
-			
+
 				if ($array_next[18]) {
 				#print OUTFILE "$array_next[4]\tEND\t$array_next[5]\t$array_next[13]\t$array_next[22]\t$array_next[17]\t$array_next[18]\t$array_next[12]\tNA\tNA\tNA\tNA\tNA\tNA\t$array_next[1]\t$array_next[2]\n";
 				}
 			}
 		}
 
-	#tar3 print this 
+	#tar3 print this
 	#chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	REFchr	REFstart	REFchr	REFend
 	#1	24752130	24752143	3.8496540738	2.3664500767	2	breakpoints	anolis_carolinensis:0.151936462935248	diffClass	sameBrk	2	5	36755557	1a	23507243
 
@@ -1299,73 +1309,73 @@ elsif ($param->{strict}) { # this is old strict function
 
 	if($array_first[4] eq $array_next[4]) {
 			my $brkDecision; my $newScore; my $classNum; my $borNum;
-		
+
 			my @className1=split /\:/, $array_first[21];
 			my @className2=split /\:/, $array_next[12];
 			my $secBor; my $secBor2;
 
-			if(($array_first[22] >= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and ($array_next[18] eq "breakpoints")) { 
-				
-					if (($array_first[22] >= $threshold) and ($array_next[13] >= $threshold)){ 
-						if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";} 
+			if(($array_first[22] >= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and ($array_next[18] eq "breakpoints")) {
+
+					if (($array_first[22] >= $threshold) and ($array_next[13] >= $threshold)){
+						if($className1[0] eq $className2[0]) { $classNum="sameClass";}  else {  $classNum="diffClass";}
 						$brkDecision="sameBrk"; $borNum=2;
 						$secBor=$array_next[13];
 						}
 					else { $classNum="singleClass"; $brkDecision="singleBrk"; $borNum=1; $secBor='NA';}
-				
-					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]"; 
-				
+
+					$newScore="$array_first[22]\t$secBor\t$array_first[26]\t$array_first[27]\t$array_first[21]";
+
 				}
-			elsif(($array_first[22] <= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and ($array_first[27] eq "breakpoints")) { 
-				
-					if (($array_first[22] >= $threshold) and ($array_next[13] >= $threshold)){ 
-						if($array_next[13] >= $threshold) { $classNum="sameClass";}  else {  $classNum="diffClass";} 
+			elsif(($array_first[22] <= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and ($array_first[27] eq "breakpoints")) {
+
+					if (($array_first[22] >= $threshold) and ($array_next[13] >= $threshold)){
+						if($array_next[13] >= $threshold) { $classNum="sameClass";}  else {  $classNum="diffClass";}
 						$brkDecision="sameBrk"; $borNum=2;
 						$secBor2=$array_first[22];
 						}
-					else { $classNum="singleClass"; $brkDecision="singleBrk"; $borNum=1; $secBor2='NA';} 
+					else { $classNum="singleClass"; $brkDecision="singleBrk"; $borNum=1; $secBor2='NA';}
 
 					$newScore="$array_next[13]\t$secBor2\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 				}
-			elsif(($array_first[22] >= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and ($array_next[18] eq "gap")) { 
-					$newScore="$array_first[22]\tNA\t$array_first[26]\t$array_first[27]\t$array_first[21]"; 
-					$classNum="singleClass"; 
+			elsif(($array_first[22] >= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and ($array_next[18] eq "gap")) {
+					$newScore="$array_first[22]\tNA\t$array_first[26]\t$array_first[27]\t$array_first[21]";
+					$classNum="singleClass";
 					$brkDecision="singleBrk";
 					$borNum=1;
 
 				}
-			elsif(($array_first[22] <= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and ($array_first[27] eq "gap")) { 
+			elsif(($array_first[22] <= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and ($array_first[27] eq "gap")) {
 					$newScore="$array_next[13]\tNA\t$array_next[17]\t$array_next[18]\t$array_next[12]";
 					$classNum="singleClass";
-					$brkDecision="singleBrk"; 
+					$brkDecision="singleBrk";
 					$borNum=1;
 				}
-			elsif(($array_first[22] >= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and (!$array_next[18])) { 
-					$newScore="$array_first[22]\tNA\t$array_first[26]\t$array_first[27]\t$array_first[21]"; 
+			elsif(($array_first[22] >= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and (!$array_next[18])) {
+					$newScore="$array_first[22]\tNA\t$array_first[26]\t$array_first[27]\t$array_first[21]";
 					$classNum="singleClass";
 					$brkDecision="singleBrk";
 					$borNum=1;
 				}
 
-			elsif(($array_first[22] <= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and (!$array_first[27])) { 
+			elsif(($array_first[22] <= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and (!$array_first[27])) {
 					$newScore="$array_next[13]\tNA\t$array_next[17]\t$array_next[18]\t$array_next[12]";
-					$classNum="singleClass";
-					$brkDecision="singleBrk"; 
-					$borNum=1;
-				}
-			elsif(($array_first[22] >= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and ($array_first[27] eq "gap")) { 
-					$newScore="$array_next[13]\tNA\t$array_next[17]\t$array_next[18]\t$array_next[12]";
-					$classNum="singleClass"; 
-					$brkDecision="singleBrk"; 
-					$borNum=1;
-				}
-			elsif(($array_first[22] <= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and ($array_next[18] eq "gap")) { 
-					$newScore="$array_first[22]\tNA\t$array_first[26]\t$array_first[27]\t$array_first[21]"; 
 					$classNum="singleClass";
 					$brkDecision="singleBrk";
 					$borNum=1;
 				}
-	 
+			elsif(($array_first[22] >= $array_next[13]) and ($array_next[18] eq "breakpoints") and ($array_next[13] >= $threshold) and ($array_first[27] eq "gap")) {
+					$newScore="$array_next[13]\tNA\t$array_next[17]\t$array_next[18]\t$array_next[12]";
+					$classNum="singleClass";
+					$brkDecision="singleBrk";
+					$borNum=1;
+				}
+			elsif(($array_first[22] <= $array_next[13]) and ($array_first[27] eq "breakpoints") and ($array_first[22] >= $threshold) and ($array_next[18] eq "gap")) {
+					$newScore="$array_first[22]\tNA\t$array_first[26]\t$array_first[27]\t$array_first[21]";
+					$classNum="singleClass";
+					$brkDecision="singleBrk";
+					$borNum=1;
+				}
+
 			else {
 				$newScore="\t\t\t\t";
 				$classNum="NA";
@@ -1383,13 +1393,13 @@ elsif ($param->{strict}) { # this is old strict function
 				#else {
 				#print "$array_first[4]\t$array_first[6]\tTel\tNA\tNA\tNA\tNA\tNA\tNA\tNA\tNA\n";
 				#}
-		
+
 			}
 		}
 
 	close OUTFILE or die "could not close $OutFile file: $!\n";
-	} 
-	else { print "strict parameter is wrong\n Check config file\n"; } 
+	}
+	else { print "strict parameter is wrong\n Check config file\n"; }
 
 } #---- sub end
 
@@ -1433,9 +1443,9 @@ close $infh;
 # Store species
 open SPSFILE, "$spsFile" or die $!;
 my @SpsArray; my $SpsNumber;
-while (<SPSFILE>) { 
+while (<SPSFILE>) {
 	my $SpsLine=$_; chomp $SpsLine; @SpsArray=split /,/, lc($SpsLine);  $SpsNumber = scalar (@SpsArray); } ## It read the species names from sps.txt file ... need to improve !!!
-	my $SpsArrayTabed=join("\t", @SpsArray); 
+	my $SpsArrayTabed=join("\t", @SpsArray);
 
 close SPSFILE or die "could not close file: $!\n";
 
@@ -1478,7 +1488,7 @@ elsif ($tmp1[8] eq "singleClass" and $tmp1[9] eq "singleBrk") { $singleClass_sin
 else { $NA++; }
 
 my $filename2 = "$file_tar";
-my $doneLine=0; 
+my $doneLine=0;
 open(my $fh2, '<:encoding(UTF-8)', $filename2) or die "Could not open file '$filename2' $!";
 
  	while (my $row2 = <$fh2>) {
@@ -1492,7 +1502,7 @@ open(my $fh2, '<:encoding(UTF-8)', $filename2) or die "Could not open file '$fil
 	next if !$values2[7];
 	my @class =split('\:', $values2[7]);
 	if ($flag==0) {$allClass{$class[0]}++;}
-	
+
 	my $changeSize=$length;
 
 	my $newTarSt=$cor[0]-$changeSize;
@@ -1502,7 +1512,7 @@ open(my $fh2, '<:encoding(UTF-8)', $filename2) or die "Could not open file '$fil
 
 #print "$newTarSt,$newTarEd,$newRefSt,$newRefEd\n";
 
-	if ($values2[0] eq $tmp1[0]) { 
+	if ($values2[0] eq $tmp1[0]) {
 		my $OverRes = checkOverlaps($newTarSt,$newTarEd,$newRefSt,$newRefEd);
 		if (($OverRes) and (!isInList("$tmp1[0]:$tmp1[1]:$tmp1[2]", @tmpAll))) { #To remove the duplicate hits
   		 	$count{$class[0]}++;
@@ -1518,11 +1528,11 @@ open(my $fh2, '<:encoding(UTF-8)', $filename2) or die "Could not open file '$fil
 			$done{$row2}=$lineNumR2;
      			}
 		}
-	if ($class[0] eq $refName) { push @remain, $row2;} 
+	if ($class[0] eq $refName) { push @remain, $row2;}
 	}
 $flag=1; # To check the final_classify.eba7 once
 
-close $fh2; 
+close $fh2;
 if (!$doneLine) { push @missinBrk, $row;}
 }
 
@@ -1560,7 +1570,7 @@ print $outfh4 $message;
 print $outfh4 "Reconstructed EBRs overlapping details ( for $file_ref : Used as reference)\n";
 print $outfh4 "Species/Group Name \t Total Number of Overlapping EBRs \t Ratio_ONE \t Ratio_OTHER\n";
 foreach my $str (sort keys %count) {
-	my ($vv1, $vv2); 
+	my ($vv1, $vv2);
 	if (%countONE) {$vv1=$countONE{$str}} else {$vv1='NA';}
 	if (%countOTHER) {$vv2=$countOTHER{$str}} else {$vv2='NA';}
 	print $outfh4 "$str\t$count{$str}\t$vv1\t$vv2\n";
@@ -1571,9 +1581,9 @@ foreach my $str (sort keys %count) {
 if (@missinBrk){
 print $outfh4 "\n\nMISSED (Reference used EBRs from $file_ref ) OVERLAPS EBRs------------>>>\n";
 print $outfh4 "chr\tstart\tend\tfirstBestratio\tsecondBestRatio\tPercentageUsed\tBrk\tclass\tsameordiffClass\tsameordiffBrk\tborderUsed\tChrREF\tStREF\tChrREF\tStREF\tfinalREFchrTAR\tfinalCor1TAR\tfinalREFchrTAR\tfinalCor2TAR\tdeciChrTAR1\tdeciCordiTAR1\tdeciBrkTAR1\tdeciChrTAR2\tdeciCordiTAR2\tdeciBrkTAR2\tbothBrkGap\tbrkDeci1\tpresence1\tbrkDeci2\tpresence2\tfinalDecision\n";
-foreach my $v (@missinBrk) { 
+foreach my $v (@missinBrk) {
 	my @vals=split('\t', $v);
-	my ($refChr1, $corSt) = extractRefCors($vals[0],$vals[1],$allHSB, $chekerExtend, $refName); 
+	my ($refChr1, $corSt) = extractRefCors($vals[0],$vals[1],$allHSB, $chekerExtend, $refName);
 	my ($refChr2, $corEd) = extractRefCors($vals[0],$vals[2],$allHSB, $chekerExtend, $refName);
 
 	if (!$corSt) {$refChr1='0';$corSt='0';} if (!$corEd) {$refChr2='0'; $corEd='0';}
@@ -1644,11 +1654,11 @@ my %classHash=%$classHash_ref;
 if ($classHash{$str}) {
 	if (index($classHash{$str}, $substr) != -1) { # -1 if found
 		$sps=$substr;
-		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\t$sps\n"; 
-		#print $fhOut "$substr\t$str\t$count\t$value1\t$value2\tcontains:$sps\n"; 
+		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\t$sps\n";
+		#print $fhOut "$substr\t$str\t$count\t$value1\t$value2\tcontains:$sps\n";
 	}
 	else {
-		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\t$sps\n"; 
+		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\t$sps\n";
 	}
 }
 else {
@@ -1658,7 +1668,7 @@ else {
 	}
 	else {
 		print $fhOut "$substr\t$str\t$count\t$value1\t$value2\t$sps\n";
-	} 
+	}
 }
 close $fhOut;
 }
@@ -1682,7 +1692,7 @@ my $finalRefCor='NA';
 		}
 	}
 	close $fh;
-} 
+}
 
 
 sub assignRefCorsVal {
@@ -1703,12 +1713,12 @@ my $finalRefCorVal='NA';
 		}
 	}
 	close $fh;
-} 
+}
 
 
 sub assignClass {
 my ($chr, $cor, $chekerExtend, $finalEBA, $classHash_ref, $refName) = @_;
-my  @allClass; 
+my  @allClass;
 my $classRes;
 my %classHash=%$classHash_ref;
 open(my $fh, '<:encoding(UTF-8)', $finalEBA) or die "Could not open file '$finalEBA' $!";
@@ -1727,10 +1737,10 @@ open(my $fh, '<:encoding(UTF-8)', $finalEBA) or die "Could not open file '$final
 	}
 	my $aClass= join ',', @allClass;
 	if ($aClass) { $classRes = checkPresence (\@allClass, \%classHash, $refName); } else {$aClass='NC';}
-	if (!$classRes) {$classRes= "NCA"} 
-	return ($aClass , $classRes);	
+	if (!$classRes) {$classRes= "NCA"}
+	return ($aClass , $classRes);
 	close $fh;
-} 
+}
 
 sub checkPresence {
 my ($allClass_ref, $classHash_ref, $refName) = @_;
@@ -1768,7 +1778,7 @@ while (<$infh>) {
 	$line=trim($line);
 	next if $line =~ /^\s*$/;
 	my @tmpLine = split /\t/, $line;
-	my $spsName = $tmpLine[0];	
+	my $spsName = $tmpLine[0];
 	my $missedNum=$tmpLine[1]-$tmpLine[2];
 	my ($realCnt, $etc) = countOccurance( $spsName, $infile1);
 	my ($spsCnt, $others, $gap) = findInMissed($spsName, $infile2);
@@ -1817,9 +1827,9 @@ while (<$fh2>) {
 		if (index($tmpLine[30], $spsName) != -1) {
 			$cnt++;
 		}
-		else { 
+		else {
 			if (index($tmpLine[25], 'gap') != -1) { $gap++;}
-			$others++; 
+			$others++;
 		}
 	}
     }
@@ -1867,7 +1877,7 @@ close $infh;
 
 sub tar2ref {
 my ($filename, $filename2, $filename3, $spsName, $spsNum, $statOut)= @_;
-#User need to provide the TAR reconstructed.e and final_classify.eba7 file ... see the commandline usage below for more detail   
+#User need to provide the TAR reconstructed.e and final_classify.eba7 file ... see the commandline usage below for more detail
 #USAGE perl checkOverlaps.pl <filenameReconstructed.e> <final_classify.eba7> <OutFileName> <NameORgroupLookinFor> <spsNum>
 
 #my $filename = "$ARGV[0]";
@@ -1906,15 +1916,15 @@ open(my $fh2, '<:encoding(UTF-8)', $filename2) or die "Could not open file '$fil
 	my @cor =split('\--', $values2[$spsNum+2]);
 	my @class =split('\:', $values2[$spsNum+7]);
 	if ($flag==0) {$allClass{$class[0]}++;}
-	
 
-	if ($values2[$spsNum+1] eq $tmp1[0]) { 
+
+	if ($values2[$spsNum+1] eq $tmp1[0]) {
 		my $OverRes = checkOverlaps($cor[0],$cor[1],$tmp1[1],$tmp1[2]);
 		if ($OverRes) {
   		 	$count{$class[0]}++;
 			$allCount++;
 			if ($values2[$spsNum+9] == 1) {$countONE{$class[0]}++;} else {$countOTHER{$class[0]}++;}
-			print $fh3 "$row\t\t$row2\n";   
+			print $fh3 "$row\t\t$row2\n";
 			$done=1;
      			}
 		}
@@ -1971,7 +1981,65 @@ my $value_count = sum values %count;
 
 }
 
+##Recontruct the breakpoints
+sub reconstructAncestral {
+my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $refName, $param, $refSciName2)=@_;
 
+#if (-d "$param->{out_dir}/output_$refName") {
+#deldir("$param->{out_dir}/output_$refName"); # or deldir($ARGV[0]) to make it commandline
+#} else { mkdir "$param->{out_dir}/output_$refName"; }
+
+if (-f "ReconstructionAncestral_$refName.stats") { unlink "ReconstructionAncestral_$refName.stats";}
+my $InFile=$finalEBA; #final_classify.eba file
+print "$InFile\n";
+my $threshold=$threshold; # threhold value to filter
+
+#my @SpsArray = @$AncestralNames_ref;
+
+foreach my $spsName(@$AncestralNames_ref) {
+  $spsName =lc $spsName;
+  print "Checking $spsName --- $refName -- $refSciName2\n";
+  my $outAncestralfile1="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar1";
+  my $outAncestralfile2="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar2";
+  my $outAncestralfile3="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar3";
+
+  open (OUTFILE1, ">$outAncestralfile1") or die "$0: open $outAncestralfile1: $!";
+  open (OUTSTAT, ">>$param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats") or die "$0: open $param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats: $!";
+
+  open INFILE,  $InFile or die "$0: open $InFile: $!";
+	my @array; my @index; my @nameArray; my $in; my $countReal; my @done; my $countBrk; my $countGap; my $total;
+	while (<INFILE>) {
+		chomp;
+		my $line=trim($_);
+		my @tmp = split /\t/, lc ($line);
+    my @classification = split /\:/, $tmp[$SpsNumber+7];
+    my @coordinate = split /\--/, $tmp[$SpsNumber+2];
+    next if $classification[0] ne $spsName;
+		# In case more than one breakpoints ( separated with comma)
+    #1	8577687	8577826	12046.0447048244	947.055705950168	10	breakpoints	gallus_gallus:0.793690571736545	sameClass	sameBrk	2	1	8882608	1	9223943
+
+		next if $_ =~ /^\s*#/;
+
+    $countReal++; $countBrk++; $countGap=0;
+		$total++;
+
+    #Create a similar file format to reconstructTar creator
+    #45377370--45382081=breakpoints+0.954545454545455	1	taeniopygia_guttata:0.884990322164547	2634.19668710963	0.0909090909090909	11	1	10
+    print OUTFILE1 "$tmp[$SpsNumber+2]=$tmp[$SpsNumber]+$classification[1]\t$tmp[$SpsNumber+1]\t$tmp[$SpsNumber+7]\t$tmp[$SpsNumber+9]\t$tmp[$SpsNumber+10]\t$tmp[$SpsNumber+11]\t$tmp[$SpsNumber+12]\t$tmp[$SpsNumber+13]\n";
+    #print OUTFILE1 "$line\n";
+
+		#72412203--72417432=Breakpoints+0.925	Breakpoints	chicken:6.22711733452034e-07	237.8835341	0.05	20	1	18
+	}
+	if (-z "ReconstructionAncestral_$refName.stats") { print OUTSTAT "spsName\tcountReal\tcountBrk\tcountGap\ttotal\n";}
+	print OUTSTAT "$spsName\t$countReal\t$countBrk\t$countGap\t$total\n";
+	close INFILE or die "could not close $InFile file: $!\n";
+close OUTSTAT or die "could not close OUTSTAT file: $!\n";
+close OUTFILE1 or die "could not close $outAncestralfile1 file: $!\n";
+
+reconstructBrk($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param);
+}}
+
+#store ancestral breakpoints detail
 sub storeClasses {
 my ($inClass, $inSps, $param, $name, $location) = @_;
 
@@ -1984,18 +2052,17 @@ while (<$infh>) {
 	my @tmpLine = split /\=/, $line;
 	if (($tmpLine[0] ne "lineage") and ( $tmpLine[0] ne $name)) { push @allClass, $tmpLine[0]; }
 }
-my $classString=join ',', @allClass; 
+my $classString=join ',', @allClass;
 copy($inSps,"$param->{out_dir}/sps_$name.txt") or die "Copy failed: $!";
 
 open(my $fh, '>>', "$param->{out_dir}/sps_$name.txt") or die "Could not open file '$param->{out_dir}/sps_$name.txt' $!";
 say $fh "$classString";
 close $fh;
 
-print "$classString\n";
+return "$classString";
 
 }
 
 1;
 
 __END__
-
