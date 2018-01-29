@@ -25,6 +25,8 @@ ambigram.pl --annot/-a
 ambigram.pl --full/-f
 
 	ambigram.pl --full/-f --conf/-c <configuration file>
+
+#NOTE: If you used extension approach in EBA, this script might not work
 =cut
 
 use strict;

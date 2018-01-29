@@ -1106,6 +1106,94 @@ close OUTFILE or die "could not close $OutFile file: $!\n";
 reconstructTarget($OutFile, $out, $spsName, $threshold, $param);
 }
 
+
+
+# Reconstruct the breaks
+sub reconstructBrk2 {
+my ($InFile, $OutFile, $spsName, $out, $threshold, $HSBInFile, $param, $spsNum) = @_;
+open (OUTFILE, ">>$OutFile") or die "$0: open $OutFile: $!";
+open INFILE,  $InFile or die "$0: open $InFile: $!";
+	while (<INFILE>) {
+		chomp;
+		if ($_ =~ /^\s*#/) { next; }
+		my $line=trim($_);
+		my @array = split /\t/, lc($line);
+		for (@array) { s/^\s+//; s/\s+$//;}
+		my @array2 = split /\=/, lc($array[0]);
+		my @array3 = split /\-\-/, lc($array2[0]);
+		my $pahala=trim($array3[0]);
+		my $dusara=trim($array3[1]);
+
+		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala);
+		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara);
+
+		print OUTFILE "$firstC\t$secondC\t$line\n";
+		
+	}
+	close INFILE or die "could not tar2 file $InFile : $!\n";
+	close OUTFILE or die "could not close hhh $OutFile file: $!\n";
+checkOverlapsInRef("$param->{ref2}/$param->{resolution}/EBA_OutFiles/final_classify.eba7", $OutFile, $out, $param, $spsNum);
+}
+
+sub checkOverlapsInRef {
+my ($finaRefFile, $inF, $OutFile, $param, $spsNum) = @_;
+open INFILE1,  $inF or die "$0: open $inF: $!";
+open (OUTFILE, ">>$OutFile") or die "$0: open $OutFile: $!";
+my $extend=1000;
+while (<INFILE1>) {
+chomp;
+if ($_ =~ /^\s*#/) { next; }
+my $line1=trim($_);
+my @array1 = split /\t/, lc($line1);
+my @fDetail = split /\:/, $array1[0];
+my @sDetail = split /\:/, $array1[1];
+
+	open INFILE2,  $finaRefFile or die "$0: open $finaRefFile: $!";
+	while (<INFILE2>) {
+	chomp;
+	if ($_ =~ /^\s*#/) { next; }
+	my $line=trim($_);
+	my @array = split /\t/, lc($line);
+	next if $array[12] ne $fDetail[1];
+	my @finalDetailCor = split /\--/, $array[$spsNum+2];
+	my $extST= $fDetail[2]-$extend; my $extEd= $sDetail[2]+$extend;
+	my $ORes = checkOverlaps($finalDetailCor[0], $finalDetailCor[1], $extST, $extEd);
+	if ($ORes) {
+	print OUTFILE "$fDetail[1]\t$fDetail[2]\t$sDetail[2]\t$extST\t$extEd\t$line1\t$_\n";
+	} }
+close INFILE2 or die "could not close hmm $finaRefFile file: $!\n";
+}
+close OUTFILE or die "could not close hhh $OutFile file: $!\n";
+close INFILE1 or die "could not close hmm $finaRefFile file: $!\n";
+}
+
+#Find ancestral coordiantes
+sub findAncestralCor {
+my ($HSBInFile, $spsName, $spsChr, $spsSt) = @_;
+open HSBFILE,  $HSBInFile or die "$0: open HSB file $HSBInFile: $!";
+my $corVal='NA';
+	while (<HSBFILE>) {
+		chomp;
+		if ($_ =~ /^\s*#/) { next; }
+		#chicken:100K	12	375235	955085	14	14785	688127	-	Meleagris_gallopavo	Chromosome
+		my @array = split /\t/, lc($_);
+		for (@array) { s/^\s+//; s/\s+$//;}
+		next if lc($array[8]) ne $spsName; ## To print only required species
+		#Loop over to check the nearby ... as these ancetral breakpoint coorindates 
+		if (( $spsSt >= $array[2]  and   $spsSt <= $array[3] ) and  ($array[1] eq $spsChr)) { 
+		
+		#print "$spsChr\t$spsSt ---- $_\n";
+		#Sometime the size go beyond HSB blocks
+		my $localDist=$spsSt - $array[2];
+		my $localCor = $array[5] + $localDist;
+
+		my $corVal = "$array[8]:$array[1]:$localCor";
+		return $corVal;
+		}
+	}
+	close HSBFILE or die "could not close hmm $HSBInFile file: $!\n";
+}
+
 sub reconstructTarget {
 my ($InFile, $OutFile, $spsName, $threshold, $param)=@_;
 #threashold is for first and second best classification score differences
@@ -1981,6 +2069,21 @@ my $value_count = sum values %count;
 
 }
 
+#Flip the HSB coordinates
+sub flipHSB {
+my ($inHSB, $outHSB)=@_;
+open (OUTHSB, ">$outHSB") or die "$0: open $outHSB: $!";
+open INHSB,  $inHSB or die "$0: open $inHSB: $!";
+while (<INHSB>) {
+	chomp;
+	my $line=trim($_);
+	my @tmp = split /\t/, lc ($line);
+	print OUTHSB "$tmp[0]\t$tmp[4]\t$tmp[5]\t$tmp[6]\t$tmp[1]\t$tmp[2]\t$tmp[3]\t$tmp[7]\t$tmp[8]\t$tmp[9]\n";
+	}
+close OUTHSB or die "could not close OUTHSB file: $!\n";
+close INHSB or die "could not close INHSB file: $!\n";
+}
+
 ##Recontruct the breakpoints
 sub reconstructAncestral {
 my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $refName, $param, $refSciName2)=@_;
@@ -1988,14 +2091,12 @@ my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $r
 #if (-d "$param->{out_dir}/output_$refName") {
 #deldir("$param->{out_dir}/output_$refName"); # or deldir($ARGV[0]) to make it commandline
 #} else { mkdir "$param->{out_dir}/output_$refName"; }
+#Flip the HSB
+#flipHSB ($allHSB, "$param->{out_dir}/intermediate_files/all_flipped_$refName.hsb");
+#my $newHSB="$param->{out_dir}/intermediate_files/all_flipped_$refName.hsb";
 
 if (-f "ReconstructionAncestral_$refName.stats") { unlink "ReconstructionAncestral_$refName.stats";}
-my $InFile=$finalEBA; #final_classify.eba file
-print "$InFile\n";
-my $threshold=$threshold; # threhold value to filter
-
 #my @SpsArray = @$AncestralNames_ref;
-
 foreach my $spsName(@$AncestralNames_ref) {
   $spsName =lc $spsName;
   print "Checking $spsName --- $refName -- $refSciName2\n";
@@ -2006,15 +2107,18 @@ foreach my $spsName(@$AncestralNames_ref) {
   open (OUTFILE1, ">$outAncestralfile1") or die "$0: open $outAncestralfile1: $!";
   open (OUTSTAT, ">>$param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats") or die "$0: open $param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats: $!";
 
-  open INFILE,  $InFile or die "$0: open $InFile: $!";
+  open INFILE,  $finalEBA or die "$0: open $finalEBA: $!";
 	my @array; my @index; my @nameArray; my $in; my $countReal; my @done; my $countBrk; my $countGap; my $total;
 	while (<INFILE>) {
 		chomp;
 		my $line=trim($_);
 		my @tmp = split /\t/, lc ($line);
     my @classification = split /\:/, $tmp[$SpsNumber+7];
-    my @coordinate = split /\--/, $tmp[$SpsNumber+2];
+    my @coordinate = split /\<-->/, $tmp[$SpsNumber+4]; #broad is +2
     next if $classification[0] ne $spsName;
+
+    #ignore if below threashold
+    next if $tmp[$SpsNumber+9] <= $threshold;
 		# In case more than one breakpoints ( separated with comma)
     #1	8577687	8577826	12046.0447048244	947.055705950168	10	breakpoints	gallus_gallus:0.793690571736545	sameClass	sameBrk	2	1	8882608	1	9223943
 
@@ -2032,12 +2136,14 @@ foreach my $spsName(@$AncestralNames_ref) {
 	}
 	if (-z "ReconstructionAncestral_$refName.stats") { print OUTSTAT "spsName\tcountReal\tcountBrk\tcountGap\ttotal\n";}
 	print OUTSTAT "$spsName\t$countReal\t$countBrk\t$countGap\t$total\n";
-	close INFILE or die "could not close $InFile file: $!\n";
+	close INFILE or die "could not close $finalEBA file: $!\n";
 close OUTSTAT or die "could not close OUTSTAT file: $!\n";
 close OUTFILE1 or die "could not close $outAncestralfile1 file: $!\n";
 
-reconstructBrk($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param);
+reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber);
 }}
+
+
 
 #store ancestral breakpoints detail
 sub storeClasses {
