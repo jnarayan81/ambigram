@@ -1,9 +1,9 @@
-aptenodytes_forsteri	22	21(20:1),1(0:1),1(0)	21	20
-anas_platyrhynchos	127	113(104:9),14(4:10),10(1)	118	109
+anolis_carolinensis	64	48(47:1),16(9:7),7(2)	59	58
 manacus_vitellinus	30	24(24:0),6(1:5),5(2)	27	27
-columba_livia	77	73(69:4),4(1:3),3(1)	75	71
-geospiza_fortis	23	16(16:0),7(0:7),7(2)	18	18
+aptenodytes_forsteri	22	21(20:1),1(0:1),1(0)	21	20
 corvus_brachyrhynchos	29	20(20:0),9(0:9),9(2)	22	22
+anas_platyrhynchos	127	113(104:9),14(4:10),10(1)	118	109
 cuculus_canorus	78	74(70:4),4(0:4),4(2)	76	72
 struthio_camelus	20	17(17:0),3(0:3),3(2)	19	19
-anolis_carolinensis	64	48(47:1),16(9:7),7(2)	59	58
+egretta_garzetta	27	27(26:1),0(0:0),0(0)	27	26
+columba_livia	77	73(69:4),4(1:3),3(1)	75	71
