@@ -1,12 +1,13 @@
-# ambigram
-
-ambigram is a bioinformatics tool to check if chromosomal breakpoints retain meaning when viewed or interpreted from a different direction, perspective, or orientation.
 
 ---. .-. .---
   --\'A'/--
      \ /
      " "
 ---ambigram v0.1---
+
+# ambigram
+
+ambigram is a bioinformatics tool to check if chromosomal breakpoints retain meaning when viewed or interpreted from a different direction, perspective, or orientation.
 
 # ambigram
 ambigram: evolutionary chromosomes breakpoints validator
