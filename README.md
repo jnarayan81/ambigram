@@ -11,7 +11,7 @@ ambigram is a bioinformatics tool to check if chromosomal breakpoints retain mea
 # ambigram
 ambigram: evolutionary chromosomes breakpoints validator
 
-Copyright 2018 Jitendra Narayan <jitendra.narayan@unamur.be> or jnarayan81ATgmail.com;
+Copyright 2018 Jitendra Narayan <jitendra.narayan@unamur.be> or jnarayan81@gmail.com;
 
 ## LICENSE
 
@@ -152,4 +152,4 @@ Feel free to clone this repository and use it under the licensing terms.
 
 Additionally, as the project is on github, you may submit patches, ticket requests, edit the wiki, send pull requests - anything you like and have the permissions to do. I will encourage any suggestions from followers :)
 
-As always, you can contact the authors at <jitendra.narayan@unamur.be>
+As always, you can contact the authors at <jitendra.narayan@unamur.be> or jnarayan81@gmail.com ;
