@@ -263,9 +263,9 @@ else {
   exit(1);
 };
 
-reconstructAncestral("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref1Name}", $param_ref, "$param_ref->{snameRef2}");
+reconstructAncestral("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref1Name}", $param_ref, "$param_ref->{snameRef2}", "$param_ref->{ref1}/classification.eba");
 
-reconstructAncestral("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref2Name}", $param_ref, "$param_ref->{snameRef1}");
+reconstructAncestral("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref2Name}", $param_ref, "$param_ref->{snameRef1}", "$param_ref->{ref2}/classification.eba");
 
 foreach my $grpName (@ancestralRef1) {
 	print "Working on ancestral group: $grpName\n";

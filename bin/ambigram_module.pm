@@ -2138,6 +2138,8 @@ foreach my $spsName(@$AncestralNames_ref) {
 
     #ignore if below threashold
     next if $tmp[$SpsNumber+9] <= $threshold;
+    #next if $tmp[$SpsNumber+12] >= ($SpsNumber/3);
+    next if $tmp[$SpsNumber+12] >= $SpsNumber/5;
 		# In case more than one breakpoints ( separated with comma)
     #1	8577687	8577826	12046.0447048244	947.055705950168	10	breakpoints	gallus_gallus:0.793690571736545	sameClass	sameBrk	2	1	8882608	1	9223943
 
