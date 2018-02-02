@@ -1124,10 +1124,15 @@ open INFILE,  $InFile or die "$0: open $InFile: $!";
 		my $pahala=trim($array3[0]);
 		my $dusara=trim($array3[1]);
 
-		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala);
-		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara);
+		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala, 1);
+		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara, 2);
+		
+		#In case not overlaps in HSB
+		if (!$firstC) { $firstC = "NA:NA:0\tNA:NA:0"; }
+		elsif (!$secondC) { $secondC = "NA:NA:0\tNA:NA:0"; }
 
-		print OUTFILE "$firstC\t$secondC\t$line\n";
+		print OUTFILE "$firstC\t$line\n";
+		print OUTFILE "$secondC\t$line\n";
 		
 	}
 	close INFILE or die "could not tar2 file $InFile : $!\n";
@@ -1169,9 +1174,9 @@ close INFILE1 or die "could not close hmm $finaRefFile file: $!\n";
 
 #Find ancestral coordiantes
 sub findAncestralCor {
-my ($HSBInFile, $spsName, $spsChr, $spsSt) = @_;
+my ($HSBInFile, $spsName, $spsChr, $spsSt, $nn) = @_;
 open HSBFILE,  $HSBInFile or die "$0: open HSB file $HSBInFile: $!";
-my $corVal='NA';
+my $corVal="NA\tNA"; my $flag=0;
 	while (<HSBFILE>) {
 		chomp;
 		if ($_ =~ /^\s*#/) { next; }
@@ -1181,17 +1186,31 @@ my $corVal='NA';
 		next if lc($array[8]) ne $spsName; ## To print only required species
 		#Loop over to check the nearby ... as these ancetral breakpoint coorindates 
 		if (( $spsSt >= $array[2]  and   $spsSt <= $array[3] ) and  ($array[1] eq $spsChr)) { 
+		$flag=1;
 		
 		#print "$spsChr\t$spsSt ---- $_\n";
 		#Sometime the size go beyond HSB blocks
 		my $localDist=$spsSt - $array[2];
 		my $localCor = $array[5] + $localDist;
 
-		my $corVal = "$array[8]:$array[1]:$localCor";
+		my $extCor = 20000;
+		my $secC= $localCor + $extCor;
+		my $firC= $localCor - $extCor;
+
+		my $cName='NA'; my $sName='NA';
+		$sName=$array[8];
+		$cName=$array[4];
+		if ($nn == 1) {
+		$corVal = "$sName:$cName:$localCor\t$sName:$cName:$secC";
+		}
+		elsif ($nn == 2) {
+		$corVal = "$sName:$cName:$firC\t$sName:$cName:$localCor";
+		}
 		return $corVal;
 		}
 	}
 	close HSBFILE or die "could not close hmm $HSBInFile file: $!\n";
+return 0 if !$flag;
 }
 
 sub reconstructTarget {
@@ -2100,15 +2119,15 @@ if (-f "ReconstructionAncestral_$refName.stats") { unlink "ReconstructionAncestr
 foreach my $spsName(@$AncestralNames_ref) {
   $spsName =lc $spsName;
   print "Checking $spsName --- $refName -- $refSciName2\n";
-  my $outAncestralfile1="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar1";
-  my $outAncestralfile2="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar2";
-  my $outAncestralfile3="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.tar3";
+  my $outAncestralfile1="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.anc1";
+  my $outAncestralfile2="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.anc2";
+  my $outAncestralfile3="$param->{out_dir}/output_$refName/$spsName"."_brk_$refName.anc3";
 
   open (OUTFILE1, ">$outAncestralfile1") or die "$0: open $outAncestralfile1: $!";
   open (OUTSTAT, ">>$param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats") or die "$0: open $param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats: $!";
 
   open INFILE,  $finalEBA or die "$0: open $finalEBA: $!";
-	my @array; my @index; my @nameArray; my $in; my $countReal; my @done; my $countBrk; my $countGap; my $total;
+	my @array; my @index; my @nameArray; my $in; my $countReal=0; my @done; my $countBrk=0; my $countGap=0; my $total=0;
 	while (<INFILE>) {
 		chomp;
 		my $line=trim($_);
