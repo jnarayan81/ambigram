@@ -109,6 +109,7 @@ sub read_config_files {
   $param{snameRef2} = read_config('snameRef2', '', $user_config);
 
   $param{threshold} = read_config('threshold', '', $user_config);
+  $param{method} = read_config('method', '', $user_config);
   $param{len} = read_config('len', '', $user_config);
 
 # PROJECT PENALTY --->
@@ -1110,7 +1111,7 @@ reconstructTarget($OutFile, $out, $spsName, $threshold, $param);
 
 # Reconstruct the breaks
 sub reconstructBrk2 {
-my ($InFile, $OutFile, $spsName, $out, $threshold, $HSBInFile, $param, $spsNum) = @_;
+my ($InFile, $OutFile, $spsName, $out, $threshold, $HSBInFile, $param, $spsNum, $outStat, $refName) = @_;
 open (OUTFILE, ">>$OutFile") or die "$0: open $OutFile: $!";
 open INFILE,  $InFile or die "$0: open $InFile: $!";
 	while (<INFILE>) {
@@ -1124,8 +1125,8 @@ open INFILE,  $InFile or die "$0: open $InFile: $!";
 		my $pahala=trim($array3[0]);
 		my $dusara=trim($array3[1]);
 
-		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala, 1);
-		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara, 2);
+		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala, 1, $param->{method});
+		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara, 2, $param->{method});
 		
 		#In case not overlaps in HSB
 		if (!$firstC) { $firstC = "NA:NA:0\tNA:NA:0"; }
@@ -1137,14 +1138,26 @@ open INFILE,  $InFile or die "$0: open $InFile: $!";
 	}
 	close INFILE or die "could not tar2 file $InFile : $!\n";
 	close OUTFILE or die "could not close hhh $OutFile file: $!\n";
-checkOverlapsInRef("$param->{ref2}/$param->{resolution}/EBA_OutFiles/final_classify.eba7", $OutFile, $out, $param, $spsNum);
+checkOverlapsInRef("$param->{ref2}/$param->{resolution}/EBA_OutFiles/final_classify.eba7", $OutFile, $out, $param, $spsNum, $outStat, $refName);
 }
 
 sub checkOverlapsInRef {
-my ($finaRefFile, $inF, $OutFile, $param, $spsNum) = @_;
+my ($finaRefFile, $inF, $OutFile, $param, $spsNum, $outStat, $refName) = @_;
 open INFILE1,  $inF or die "$0: open $inF: $!";
 open (OUTFILE, ">>$OutFile") or die "$0: open $OutFile: $!";
-my $extend=1000;
+open (OUTSTAT, ">>$param->{out_dir}/results/ancestral.stat") or die "$0: open anc: $!";
+
+my %sVal;
+open (ANCSTAT, "$param->{out_dir}/output_$refName/ReconstructionAncestral_$refName.stats") or die "$0: open stat file: $!";
+while (<ANCSTAT>) {
+chomp;
+if ($_ =~ /^\s*#/) { next; }
+my $l1=trim($_);
+my @aLine= split /\t/, lc($l1);
+$sVal{$aLine[0]}=$aLine[1];
+}
+
+my $extend=10000; my @sName1; my @sName2; my $count=0; my @ancName;
 while (<INFILE1>) {
 chomp;
 if ($_ =~ /^\s*#/) { next; }
@@ -1152,7 +1165,7 @@ my $line1=trim($_);
 my @array1 = split /\t/, lc($line1);
 my @fDetail = split /\:/, $array1[0];
 my @sDetail = split /\:/, $array1[1];
-
+@ancName= split /\:/, $array1[4];
 	open INFILE2,  $finaRefFile or die "$0: open $finaRefFile: $!";
 	while (<INFILE2>) {
 	chomp;
@@ -1160,21 +1173,28 @@ my @sDetail = split /\:/, $array1[1];
 	my $line=trim($_);
 	my @array = split /\t/, lc($line);
 	next if $array[12] ne $fDetail[1];
-	my @finalDetailCor = split /\--/, $array[$spsNum+2];
+	@sName1=split /\:/, lc($array[18]);
+	@sName2=split /\:/, lc($array[19]);
+
+	my @finalDetailCor = split /\-\-/, $array[$spsNum+2];
 	my $extST= $fDetail[2]-$extend; my $extEd= $sDetail[2]+$extend;
 	my $ORes = checkOverlaps($finalDetailCor[0], $finalDetailCor[1], $extST, $extEd);
 	if ($ORes) {
 	print OUTFILE "$fDetail[1]\t$fDetail[2]\t$sDetail[2]\t$extST\t$extEd\t$line1\t$_\n";
-	} }
-close INFILE2 or die "could not close hmm $finaRefFile file: $!\n";
+	#Check in both cases firstBestBRK class and secBestBRK class
+	if ((($ancName[0] eq  $sName1[0]) or ($ancName[0] eq  $sName2[0])) and  ($array[20] <= 45)) { $count++;}
+	}}
+	close INFILE2 or die "could not close hmm $finaRefFile file: $!\n";
 }
+print OUTSTAT "$outStat\t$ancName[0]\t$sVal{$ancName[0]}\t$count\n";
 close OUTFILE or die "could not close hhh $OutFile file: $!\n";
 close INFILE1 or die "could not close hmm $finaRefFile file: $!\n";
+
 }
 
 #Find ancestral coordiantes
 sub findAncestralCor {
-my ($HSBInFile, $spsName, $spsChr, $spsSt, $nn) = @_;
+my ($HSBInFile, $spsName, $spsChr, $spsSt, $nn, $approach) = @_;
 open HSBFILE,  $HSBInFile or die "$0: open HSB file $HSBInFile: $!";
 my $corVal="NA\tNA"; my $flag=0;
 	while (<HSBFILE>) {
@@ -1190,12 +1210,27 @@ my $corVal="NA\tNA"; my $flag=0;
 		
 		#print "$spsChr\t$spsSt ---- $_\n";
 		#Sometime the size go beyond HSB blocks
-		my $localDist=$spsSt - $array[2];
-		my $localCor = $array[5] + $localDist;
+		my $localDist=0; my $localCor=0;
+		my $HSBsize=$array[3] - $array[2];
+		
+		#New method suggested by MFB
+		if ($approach eq "approx") {
+		$localDist=$spsSt - $array[2];
+		my $perDist=($localDist*100)/$HSBsize;
+		my $HSBtarSize = $array[6]-$array[5];
+		$localCor = (round (($HSBtarSize*$perDist)/100) + $array[5]);
+		print "$HSBsize\t$localDist\t$spsSt - $array[2]\t$perDist\t$HSBtarSize\t$localCor\n";
+		}
+		else {
+		$localDist=$spsSt - $array[2];
+		$localCor = $array[5] + $localDist;
+		}
 
-		my $extCor = 20000;
+		my $extCor = 1000;
 		my $secC= $localCor + $extCor;
 		my $firC= $localCor - $extCor;
+
+		if ($firC != abs ($firC)) {$firC=0;} #To ignore the end of the chromosome error ... if negative set 0
 
 		my $cName='NA'; my $sName='NA';
 		$sName=$array[8];
@@ -2139,7 +2174,8 @@ foreach my $spsName(@$AncestralNames_ref) {
     #ignore if below threashold
     next if $tmp[$SpsNumber+9] <= $threshold;
     #next if $tmp[$SpsNumber+12] >= ($SpsNumber/3);
-    next if $tmp[$SpsNumber+12] >= $SpsNumber/5;
+    next if $tmp[$SpsNumber+12] >= $SpsNumber/4;
+    #next if $tmp[$SpsNumber+9] <= 45;
 		# In case more than one breakpoints ( separated with comma)
     #1	8577687	8577826	12046.0447048244	947.055705950168	10	breakpoints	gallus_gallus:0.793690571736545	sameClass	sameBrk	2	1	8882608	1	9223943
 
@@ -2161,7 +2197,7 @@ foreach my $spsName(@$AncestralNames_ref) {
 close OUTSTAT or die "could not close OUTSTAT file: $!\n";
 close OUTFILE1 or die "could not close $outAncestralfile1 file: $!\n";
 
-reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber);
+reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber, $refName, $refName);
 }}
 
 
