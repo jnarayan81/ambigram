@@ -6,7 +6,7 @@ anas_platyrhynchos	127	127:113	127	0	TarRecon	86	16	 25 	 0
 Hello USER, ...........anas_platyrhynchos analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/anas_platyrhynchos_brk_chicken.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_chicken/anas_platyrhynchos_brk_chicken.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 anas_platyrhynchos	91	NA	91
 anolis_carolinensis	3	NA	3
@@ -17,7 +17,7 @@ g7	2	NA	2
 taeniopygia_guttata	9	NA	9
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/anas_platyrhynchos_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_chicken/anas_platyrhynchos_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 12	8758851	8759834	232422.233666016	1.97052418803485	1	breakpoints	anas_platyrhynchos:0.982456140350877	diffClass	sameBrk	2	11	2635429	11	9425556	11	1907448	11	9425556	NA	NA	NA	11	9425212--9425556	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
 12	12137480	12138086	232422.233666016	1.97052418803485	1	breakpoints	anas_platyrhynchos:0.982456140350877	diffClass	sameBrk	2	11	763433	11	11968979	11	814015	11	11968979	NA	NA	NA	11	11967052--11968979	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD

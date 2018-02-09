@@ -6,7 +6,7 @@ geospiza_fortis	24	24:19	24	0	TarRecon	16	4	 4 	 0
 Hello USER, ...........geospiza_fortis analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/geospiza_fortis_brk_finch.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_finch/geospiza_fortis_brk_finch.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 both_finches	1	NA	1
 both_finches_crow	1	NA	1
@@ -14,7 +14,7 @@ gallus_gallus	2	NA	2
 geospiza_fortis	15	NA	15
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/geospiza_fortis_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_finch/geospiza_fortis_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 1278	251372	273068	220.113859246125	4.09852928554074	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	4	1335790	4	2400885	4	1330157	4	2400885	NA	NA	NA	4	2393650--2400885	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
 178	1066333	1083454	836.433986289394	151	1	breakpoints	geospiza_fortis:0.981651376146789	sameClass	sameBrk	2	2	1890583	2	439781	2	1919524	2	439781	2	1890583--1953215	Gap	2	288917--439781	Breakpoints	Gap,Breakpoints	NC	NCA	gallus_gallus:0.849889705578895	geospiza_fortis	geospiza_fortis

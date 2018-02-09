@@ -4,7 +4,7 @@
 
 -=-=-= BASIC PARAMETER FOR LOCATION AND FILE NAME =-=-=-
 
-reads_dir = /home/jitendra/ETC/ambigram/ambigram2/sampleDATA/
+reads_dir = /Users/jitendra/myTools/ambigram/sampleDATA
 
 -=-=-= PATH TO EXTERNAL PROGRAMS USED BY quadraG =-=-=-
 

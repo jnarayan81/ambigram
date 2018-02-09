@@ -6,7 +6,7 @@ cuculus_canorus	85	85:76	85	0	TarRecon	52	9	 24 	 0
 Hello USER, ...........cuculus_canorus analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/cuculus_canorus_brk_finch.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_finch/cuculus_canorus_brk_finch.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 anolis_carolinensis	1	NA	1
 cuculus_canorus	66	NA	66
@@ -14,7 +14,7 @@ egretta_garzetta	1	NA	1
 gallus_gallus	8	NA	8
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/cuculus_canorus_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_finch/cuculus_canorus_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 220	187790	198768	647.977309173421	72.6730155779987	1	breakpoints	cuculus_canorus:0.993377483443709	sameClass	sameBrk	2	14	2784240	14	2234557	14	2797878	14	2234557	NA	NA	NA	14	2233966--2234557	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
 220	630438	635137	647.977309173421	72.6730155779987	1	breakpoints	cuculus_canorus:0.993377483443709	sameClass	sameBrk	2	14	2604656	14	1636856	14	2666227	14	1636856	NA	NA	NA	14	1630065--1636856	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
