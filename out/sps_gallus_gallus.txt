@@ -1,1 +1,0 @@
-columba_livia,corvus_brachyrhynchos,anas_platyrhynchos,geospiza_fortis,manacus_vitellinus,aptenodytes_forsteri,cuculus_canorus,anolis_carolinensis,struthio_camelus,egretta_garzetta,taeniopygia_guttataG2,G3,G4,egret_penguin,both_finches_crow,both_finches,both_finches_crow_manakin,neognathae,G5,G6,G7
