@@ -1,0 +1,21 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+columba_livia	82	82:77	82	0	TarRecon	54	13	 15 	 0
+
+..........
+Hello USER, ...........columba_livia analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_finch/columba_livia_brk_finch.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+columba_livia	68	NA	68
+gallus_gallus	9	NA	9
+
+
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_finch/columba_livia_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
+115	1251662	1251728	343.607546601374	207.114852689303	1	breakpoints	columba_livia:0.979310344827586	diffClass	sameBrk	2	19	3008137	19	3579977	19	2702485	19	3579977	NA	NA	NA	19	3546469--3579977	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
+133	944451	945431	20762.5	NA	1	breakpoints	columba_livia:0.979310344827586	singleClass	singleBrk	1	28	3969095	28	1586318	28	3917388	28	1586318	NA	NA	NA	28	1583910--1586318	Breakpoints	NA,Breakpoints	NC	NCA	taeniopygia_guttata:4.19609557446068	NCA	NFD
+194	1107930	1108007	20762.5	NA	1	breakpoints	columba_livia:0.979310344827586	singleClass	singleBrk	1	28	3227072	28	1057736	28	3204709	28	1057736	NA	NA	NA	28	1022384--1057736	Gap	NA,Gap	NC	NCA	NC	NCA	NFD
+325	800136	808293	137.5	NA	1	breakpoints	columba_livia:0.979310344827586	singleClass	singleBrk	1	3	701558	3	23231510	3	785141	3	23231510	NA	NA	NA	3	23231506--23231510	Gap	NA,Gap	NC	NCA	anolis_carolinensis:0.932038834951456	NCA	NFD
+43	266703	291243	1.21293776662374	1.21293776662374	2	breakpoints	columba_livia:0.00557591173996209	sameClass	sameBrk	2	1a	46833615	1a	46833639	1a	46847357	1a	46833639	NA	NA	NA	1a	46833615--46833639	Gap	NA,Gap	NC	NCA	NC	NCA	NFD

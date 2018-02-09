@@ -1,0 +1,19 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+aptenodytes_forsteri	22	22:21	22	0	TarRecon	17	1	 4 	 0
+
+..........
+Hello USER, ...........aptenodytes_forsteri analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_chicken/aptenodytes_forsteri_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anolis_carolinensis	1	NA	1
+aptenodytes_forsteri	18	NA	18
+both_finches	1	NA	1
+egret_penguin	1	NA	1
+
+
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_chicken/aptenodytes_forsteri_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
+104	234868	271475	27.8333333333334	NA	1	breakpoints	aptenodytes_forsteri:0.970238095238095	singleClass	singleBrk	1	8	28728262	8	2852179	8	28836775	8	2852179	NA	NA	NA	8	2798243--2852179	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD

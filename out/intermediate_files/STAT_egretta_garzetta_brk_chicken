@@ -1,0 +1,14 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Overlaps Count 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+egretta_garzetta	27	27:27	27	0	TarRecon	15	1	 11 	 0
+
+..........
+Hello USER, ...........egretta_garzetta analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_chicken/egretta_garzetta_brk_chicken.tar3 : Used as reference)
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+anolis_carolinensis	1	NA	1
+both_finches_crow_manakin	2	NA	2
+egretta_garzetta	21	NA	21
+taeniopygia_guttata	3	NA	3

@@ -1,0 +1,16 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Multiple Hits in reference table 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+taeniopygia_guttata	56	56:59	56	0	TarRecon	24	10	 22 	 0
+
+..........
+Hello USER, ...........taeniopygia_guttata analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+both_finches	5	1	4
+both_finches_crow	2	2	
+both_finches_crow_manakin	1		1
+columba_livia	1	1	
+g6	1	1	
+taeniopygia_guttata	49	3	46

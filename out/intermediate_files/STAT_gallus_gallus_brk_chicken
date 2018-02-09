@@ -1,0 +1,14 @@
+Overview of reconstructed table detail
+Species/Group Name 	 Total Number of reconstructed EBRs 	 Multiple Hits in reference table 	 Unique reconstructed EBRs 	 Duplicates reconstructed EBRs	 Tar	 sameClass_sameBrk 	 diffClass_sameBrk 	 singleClass_singleBrk 	 Others
+gallus_gallus	60	60:61	60	0	TarRecon	30	2	 28 	 0
+
+..........
+Hello USER, ...........gallus_gallus analysis ..................... SEE NEXT TABLE BELOW?
+..........
+
+Reconstructed EBRs overlapping details
+Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
+g2	3	3	
+g6	2	1	1
+gallus_gallus	54	8	46
+neognathae	2		2
