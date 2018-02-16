@@ -6,7 +6,7 @@ anolis_carolinensis	75	75:46	75	0	TarRecon	18	4	 53 	 0
 Hello USER, ...........anolis_carolinensis analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/anolis_carolinensis_brk_finch.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_finch/anolis_carolinensis_brk_finch.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 anolis_carolinensis	42	NA	42
 aptenodytes_forsteri	1	NA	1
@@ -15,7 +15,7 @@ cuculus_canorus	1	NA	1
 neognathae	1	NA	1
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_finch/anolis_carolinensis_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_finch/anolis_carolinensis_brk_finch.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 1	39942496	43144714	151	NA	2	breakpoints	anolis_carolinensis:0.499540543184225	singleClass	singleBrk	1	5	26553203	5	21561303	5	27136564	5	21561303	5	26553203--27589311	Breakpoints	5	20272800--21561303	Breakpoints	Breakpoints,Breakpoints	neognathae:0.932038834951456	anolis_carolinensis	anolis_carolinensis:0.278149888470994	anolis_carolinensis	anolis_carolinensis
 1	85312702	94182331	151	NA	1	breakpoints	anolis_carolinensis:0.967078189300411	singleClass	singleBrk	1	7	6897542	7	10818427	7	11499222	7	10818427	7	11136529--11524536	Gap	7	6897542--10818427	Gap	Gap,Gap	columba_livia:0.973568281938326	NCA	gallus_gallus:0.793690571736545,gallus_gallus:0.0539401359432604,gallus_gallus:0.0539401359432604,anolis_carolinensis:0.24126366542385,gallus_gallus:0.868885445142604,columba_livia:0.973568281938326,anas_platyrhynchos:0.982456140350877	anolis_carolinensis	anolis_carolinensis

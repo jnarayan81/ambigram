@@ -6,13 +6,13 @@ geospiza_fortis	23	23:16	23	0	TarRecon	13	5	 5 	 0
 Hello USER, ...........geospiza_fortis analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/geospiza_fortis_brk_chicken.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_chicken/geospiza_fortis_brk_chicken.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 geospiza_fortis	15	NA	15
 taeniopygia_guttata	1	NA	1
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/geospiza_fortis_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_chicken/geospiza_fortis_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 113	1166764	1167114	69.2499999999997	39.6666666666667	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	5	5284600	5	3919878	5	5392455	5	3919878	NA	NA	NA	5	3919832--3919878	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
 113	1461302	1464604	69.2499999999997	39.6666666666667	1	breakpoints	geospiza_fortis:0.982456140350877	sameClass	sameBrk	2	5	4207916	5	3607824	5	4214066	5	3607824	5	4207916--4225768	Breakpoints	5	3561860--3607824	Breakpoints	Breakpoints,Breakpoints	NC	NCA	NC	NCA	NFD

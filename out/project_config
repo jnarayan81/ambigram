@@ -1,8 +1,8 @@
 #-----------------------------------------------------------------------------------------------------------------------------
 #---PROJECT PARAMETERS---
 
-data_dir = /home/jitendra/ETC/Sanyojan/sampleDATA
-out_dir =/home/jitendra/ETC/ambigram/ambigram2/out
+data_dir = /Users/jitendra/myTools/ambigram/sampleDATA
+out_dir =/Users/jitendra/myTools/ambigram/out
 
 #-----------------------------------------------------------------------------------------------------------------------------
 #---GENERAL SETTINGS
@@ -26,18 +26,21 @@ strict=1		#stricted while reconstructing brks ... does not consider GAP brks at 
 resolution=100			#Kmer for assembly
 
 #Location of first ref EBA out folder
-ref1=/home/jitendra/ETC/ambigram/ambigram2/Taegut
+ref1=/Users/jitendra/myTools/ambigram/Taegut
 ref1Name=finch
 snameRef1=taeniopygia_guttata
 
 #Location of second ref EBA out folder
-ref2=/home/jitendra/ETC/ambigram/ambigram2/Galgal
+ref2=/Users/jitendra/myTools/ambigram/Galgal
 ref2Name=chicken
 snameRef2=gallus_gallus
 
 
 threshold=1.1 #score diff keep 1.1 more than 1
 len=0
+
+#Ancestral HSB reconstruction parameters
+method=approx #"approx" if you want to use percentage appraoch in HSB reconstruction, else keep it "normal" (distance way). 
 
 #---GENERAL PENALTY
 mutation=-1		# Penalise the mutation

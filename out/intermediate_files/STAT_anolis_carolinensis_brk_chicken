@@ -6,7 +6,7 @@ anolis_carolinensis	64	64:48	64	0	TarRecon	14	0	 50 	 0
 Hello USER, ...........anolis_carolinensis analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/anolis_carolinensis_brk_chicken.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_chicken/anolis_carolinensis_brk_chicken.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 anolis_carolinensis	39	NA	39
 columba_livia	1	NA	1
@@ -14,7 +14,7 @@ neognathae	4	NA	4
 taeniopygia_guttata	4	NA	4
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/anolis_carolinensis_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_chicken/anolis_carolinensis_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 1	112880677	116418543	94.0000000000002	NA	1	breakpoints	anolis_carolinensis:0.932038834951456	singleClass	singleBrk	1	13	4421773	7	4151837	13	4895616	7	4151837	13	4421773--10045234	Gap	7	563670--4151837	Gap	Gap,Gap	anolis_carolinensis:0.967078189300411,neognathae:0.967078189300411,struthio_camelus:0.993377483443709,egretta_garzetta:0.972850678733032,manacus_vitellinus:0.993377483443709	anolis_carolinensis	taeniopygia_guttata:0.884990322164547,taeniopygia_guttata:0.890890257645644,both_finches:0.907542411994161,columba_livia:0.979310344827586,cuculus_canorus:0.993377483443709,manacus_vitellinus:0.00279501124701838,manacus_vitellinus:0.993377483443709,manacus_vitellinus:0.993377483443709	anolis_carolinensis	anolis_carolinensis
 1	132038669	132551701	1.14009350271744	NA	2	breakpoints	anolis_carolinensis:0.192760015878717	singleClass	singleBrk	1	13	2868271	1	169616821	13	3978735	1	169616821	NA	NA	NA	1	168676909--169616821	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD

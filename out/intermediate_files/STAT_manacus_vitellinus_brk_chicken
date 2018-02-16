@@ -6,14 +6,14 @@ manacus_vitellinus	30	30:24	30	0	TarRecon	18	5	 7 	 0
 Hello USER, ...........manacus_vitellinus analysis ..................... SEE NEXT TABLE BELOW?
 ..........
 
-Reconstructed EBRs overlapping details ( for /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/manacus_vitellinus_brk_chicken.tar3 : Used as reference)
+Reconstructed EBRs overlapping details ( for /Users/jitendra/myTools/ambigram/out/output_chicken/manacus_vitellinus_brk_chicken.tar3 : Used as reference)
 Species/Group Name 	 Total Number of Overlapping EBRs 	 Ratio_ONE 	 Ratio_OTHER
 both_finches_crow	3	NA	3
 manacus_vitellinus	19	NA	19
 taeniopygia_guttata	2	NA	2
 
 
-MISSED (Reference used EBRs from /home/jitendra/ETC/ambigram/ambigram2/out/output_chicken/manacus_vitellinus_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
+MISSED (Reference used EBRs from /Users/jitendra/myTools/ambigram/out/output_chicken/manacus_vitellinus_brk_chicken.tar3 ) OVERLAPS EBRs------------>>>
 chr	start	end	firstBestratio	secondBestRatio	PercentageUsed	Brk	class	sameordiffClass	sameordiffBrk	borderUsed	ChrREF	StREF	ChrREF	StREF	finalREFchrTAR	finalCor1TAR	finalREFchrTAR	finalCor2TAR	deciChrTAR1	deciCordiTAR1	deciBrkTAR1	deciChrTAR2	deciCordiTAR2	deciBrkTAR2	bothBrkGap	brkDeci1	presence1	brkDeci2	presence2	finalDecision
 1	923027	1003916	156574.25	116.354922293562	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	1	69633816	1	67014249	1	69470560	1	67014249	NA	NA	NA	1	67000127--67014249	Breakpoints	NA,Breakpoints	NC	NCA	NC	NCA	NFD
 203	145032	152123	156574.25	4962.19367820696	1	breakpoints	manacus_vitellinus:0.969543147208122	sameClass	sameBrk	2	1	195080036	1	86138119	1	195048291	1	86138119	NA	NA	NA	1	86121017--86138119	Gap	NA,Gap	NC	NCA	NC	NCA	NFD

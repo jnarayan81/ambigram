@@ -1,0 +1,22 @@
+finch	g2	7	3
+finch	g3	1	0
+finch	g4	1	2
+finch			0
+finch	g6	4	0
+finch	g7	1	1
+finch	both_finches	14	6
+finch	both_finches_crow	22	20
+finch	both_finches_crow_manakin	21	7
+finch	egret_penguin	3	0
+finch	neognathae	6	2
+chicken	g2	3	1
+chicken			0
+chicken			0
+chicken			0
+chicken	g6	7	0
+chicken	g7	1	0
+chicken	both_finches	15	0
+chicken	both_finches_crow	24	0
+chicken	both_finches_crow_manakin	17	0
+chicken	egret_penguin	2	0
+chicken	neognathae	6	0

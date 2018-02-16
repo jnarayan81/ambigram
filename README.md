@@ -10,6 +10,8 @@ ambigram: evolutionary chromosomes breakpoints validator
 
 ambigram is a bioinformatics tool to check if chromosomal breakpoints retain meaning when viewed or interpreted from a different direction, perspective, or orientation.
 
+Work in progress -- so far, this tool was only tested on Chicken and Finch data. Feel free to report any bugs or flags...
+
 Copyright 2018 Jitendra Narayan <jitendra.narayan@unamur.be> or jnarayan81@gmail.com;
 
 ## LICENSE
@@ -94,11 +96,11 @@ This documentation may be out of date depending on whether or not the developers
 
 ## RELEASE HISTORY
 
-0.1.O - 30 Jan 2018
+0.1.0 - 30 Jan 2018
 
 ## OUTPUT FORMAT
 
-ambigram outfile columns: [ NEED UPDATE ]
+ambigram outfile columns: [ NEED AN UPDATE, the out file structured is changed over time ] --- see <outfolder>/results
 
 * CHROM       Reference entry where ambigram occurs
 * OUTERSTART  The 5' most boundary estimate of where ambigram begins
@@ -151,4 +153,4 @@ Feel free to clone this repository and use it under the licensing terms.
 
 Additionally, as the project is on github, you may submit patches, ticket requests, edit the wiki, send pull requests - anything you like and have the permissions to do. I will encourage any suggestions from followers :)
 
-As always, you can contact the authors at <jitendra.narayan@unamur.be> or jnarayan81@gmail.com ;
+As always, you can contact the authors at :mailbox: <jitendra.narayan@unamur.be> or jnarayan81@gmail.com ;
