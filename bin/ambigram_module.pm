@@ -1219,7 +1219,7 @@ my $corVal="NA\tNA"; my $flag=0;
 		my $perDist=($localDist*100)/$HSBsize;
 		my $HSBtarSize = $array[6]-$array[5];
 		$localCor = (round (($HSBtarSize*$perDist)/100) + $array[5]);
-		print "$HSBsize\t$localDist\t$spsSt - $array[2]\t$perDist\t$HSBtarSize\t$localCor\n";
+		#print "$HSBsize\t$localDist\t$spsSt - $array[2]\t$perDist\t$HSBtarSize\t$localCor\n";
 		}
 		else {
 		$localDist=$spsSt - $array[2];
@@ -2018,7 +2018,7 @@ close $infh;
 
 
 sub tar2ref {
-my ($filename, $filename2, $filename3, $spsName, $spsNum, $statOut)= @_;
+my ($filename, $filename2, $filename3, $spsName, $spsNum, $statOut, $outRes)= @_;
 #User need to provide the TAR reconstructed.e and final_classify.eba7 file ... see the commandline usage below for more detail
 #USAGE perl checkOverlaps.pl <filenameReconstructed.e> <final_classify.eba7> <OutFileName> <NameORgroupLookinFor> <spsNum>
 
@@ -2026,6 +2026,7 @@ my ($filename, $filename2, $filename3, $spsName, $spsNum, $statOut)= @_;
 #my $filename3 = "$ARGV[2]";
 open(my $fh, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename' $!";
 open(my $fh3, '>:encoding(UTF-8)', $filename3) or die "Could not open file '$filename3' $!";
+open(my $fh4, '>:encoding(UTF-8)', $outRes) or die "Could not open file '$outRes' $!";
 
 my %count; my %countONE; my %countOTHER;my %countTarClass; my $allCount=0;my %allClass; my $flag=0; my @allCor;
 my $sameClass_sameBrk=0; my $diffClass_sameBrk=0; my $singleClass_singleBrk=0; my $NA=0;
@@ -2108,7 +2109,11 @@ print $outSTAT $message;
 print $outSTAT "Reconstructed EBRs overlapping details\n";
 print $outSTAT "Species/Group Name \t Total Number of Overlapping EBRs \t Ratio_ONE \t Ratio_OTHER\n";
 foreach my $str (sort keys %count) { print $outSTAT "$str\t$count{$str}\t$countONE{$str}\t$countOTHER{$str}\n"; }
-
+#Print into the final result file for plot
+print $fh4 "names\tcnt\n"; 
+foreach my $str (sort keys %count) { print $fh4 "$str\t$count{$str}\n"; }
+my $missEBRs = scalar @missinBrk;
+print $fh4 "missedEBRs\t$missEBRs\n";
 
 if (@missinBrk){
 print $outSTAT "\n\nMISSED OVERLAPS EBRs------------>>>\n";

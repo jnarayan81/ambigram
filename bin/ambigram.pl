@@ -183,11 +183,11 @@ foreach my $spsName (@$SpsArray_ref) {
 	print "Working on species: $spsName\n";
 	#Lets create the reference based breakpoints stats
 	if ($param_ref->{snameRef1} eq $spsName) {
-		tar2ref("$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$param_ref->{snameRef1}"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/OUT_$param_ref->{snameRef1}"."_brk_$param_ref->{ref1Name}", "$param_ref->{snameRef1}", $SpsNumber, "$param_ref->{out_dir}/intermediate_files/STAT_$param_ref->{snameRef1}"."_brk_$param_ref->{ref1Name}");
+		tar2ref("$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$param_ref->{snameRef1}"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/OUT_$param_ref->{snameRef1}"."_brk_$param_ref->{ref1Name}", "$param_ref->{snameRef1}", $SpsNumber, "$param_ref->{out_dir}/intermediate_files/STAT_$param_ref->{snameRef1}"."_brk_$param_ref->{ref1Name}", "$param_ref->{out_dir}/results/Reference_results_$param_ref->{ref1Name}");
 	next;
 	}
 	elsif ($param_ref->{snameRef2} eq $spsName) {
-		tar2ref("$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$param_ref->{snameRef2}"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/OUT_$param_ref->{snameRef2}"."_brk_$param_ref->{ref2Name}", "$param_ref->{snameRef2}", $SpsNumber, "$param_ref->{out_dir}/intermediate_files/STAT_$param_ref->{snameRef2}"."_brk_$param_ref->{ref2Name}");
+		tar2ref("$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$param_ref->{snameRef2}"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/OUT_$param_ref->{snameRef2}"."_brk_$param_ref->{ref2Name}", "$param_ref->{snameRef2}", $SpsNumber, "$param_ref->{out_dir}/intermediate_files/STAT_$param_ref->{snameRef2}"."_brk_$param_ref->{ref2Name}", "$param_ref->{out_dir}/results/Reference_results_$param_ref->{ref2Name}");
 		#tar2ref("gallus_gallus_brk_finch.tar3", "final_classify_chicken.eba7", "see", "gallus_gallus", 11, "aaa");
 	next;
 	}
@@ -237,6 +237,10 @@ reformatTable("$param_ref->{out_dir}/results/results_$param_ref->{ref1Name}", "$
 reformatTable("$param_ref->{out_dir}/results/results_$param_ref->{ref2Name}", "$param_ref->{out_dir}/results/results2plot_$param_ref->{ref2Name}");
 
 system ("Rscript $Bin/utils/plotResult.R $param_ref->{out_dir}/results/results_$param_ref->{ref1Name} $param_ref->{out_dir}/results/results_$param_ref->{ref2Name} $param_ref->{out_dir}/results/results2plot_$param_ref->{ref1Name} $param_ref->{out_dir}/results/results2plot_$param_ref->{ref2Name}");
+#Plot Pie
+system ("Rscript $Bin/utils/plotPie.R $param_ref->{out_dir}/results/Reference_results_$param_ref->{ref2Name} $param_ref->{ref2Name} $param_ref->{out_dir}/results/Reference_results_pie_$param_ref->{ref2Name}");
+system ("Rscript $Bin/utils/plotPie.R $param_ref->{out_dir}/results/Reference_results_$param_ref->{ref1Name} $param_ref->{ref1Name} $param_ref->{out_dir}/results/Reference_results_pie_$param_ref->{ref1Name}");
+
 system ("mv Rplots.pdf $param_ref->{out_dir}/results");
 }
 
