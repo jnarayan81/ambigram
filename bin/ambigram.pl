@@ -192,13 +192,19 @@ foreach my $spsName (@$SpsArray_ref) {
 	next;
 	}
 
- 	checkOverlapsTAR ("$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$spsName"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$spsName"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{out_dir}/intermediate_files/OUT_$spsName"."_brk_$param_ref->{ref1Name}", $spsName, $SpsNumber, "$param_ref->{extend}", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all_all.eba00", "$param_ref->{ref1}/sps.txt", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "aaaa", "$param_ref->{out_dir}/intermediate_files/STAT_$spsName"."_brk_$param_ref->{ref1Name}", $spsName, "$param_ref->{out_dir}/intermediate_files/stat/finalOut_$param_ref->{ref1Name}","$param_ref->{out_dir}/intermediate_files/stat/missedOut_$param_ref->{ref1Name}", "$param_ref->{ref2}/classification.eba", "$param_ref->{chekerExtend}", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/stat/countSTAT_$param_ref->{ref1Name}");
+ 	checkOverlapsTAR ("$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$spsName"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$spsName"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{out_dir}/intermediate_files/OUT_$spsName"."_brk_$param_ref->{ref1Name}", $spsName, $SpsNumber, "$param_ref->{extend}", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all_all.eba00", "$param_ref->{ref1}/sps.txt", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "aaaa", "$param_ref->{out_dir}/intermediate_files/STAT_$spsName"."_brk_$param_ref->{ref1Name}", $spsName, "$param_ref->{out_dir}/intermediate_files/stat/finalOut_$param_ref->{ref1Name}","$param_ref->{out_dir}/intermediate_files/stat/missedOut_$param_ref->{ref1Name}", "$param_ref->{ref2}/classification.eba", "$param_ref->{chekerExtend}", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/stat/countSTAT_$param_ref->{ref1Name}", "$param_ref->{ref1Name}", "$param_ref->{out_dir}/intermediate_files/MISSING_coordinates_$param_ref->{ref1Name}");
 
-	checkOverlapsTAR ("$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$spsName"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$spsName"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{out_dir}/intermediate_files/OUT_$spsName"."_brk_$param_ref->{ref2Name}", $spsName, $SpsNumber, "$param_ref->{extend}", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all_all.eba00", "$param_ref->{ref2}/sps.txt", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "aaaa", "$param_ref->{out_dir}/intermediate_files/STAT_$spsName"."_brk_$param_ref->{ref2Name}", $spsName, "$param_ref->{out_dir}/intermediate_files/stat/finalOut_$param_ref->{ref2Name}","$param_ref->{out_dir}/intermediate_files/stat/missedOut_$param_ref->{ref2Name}", "$param_ref->{ref1}/classification.eba", "$param_ref->{chekerExtend}", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/stat/countSTAT_$param_ref->{ref2Name}");
-
+	checkOverlapsTAR ("$param_ref->{out_dir}/output_$param_ref->{ref2Name}/$spsName"."_brk_$param_ref->{ref2Name}.tar3", "$param_ref->{out_dir}/output_$param_ref->{ref1Name}/$spsName"."_brk_$param_ref->{ref1Name}.tar3", "$param_ref->{out_dir}/intermediate_files/OUT_$spsName"."_brk_$param_ref->{ref2Name}", $spsName, $SpsNumber, "$param_ref->{extend}", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all_all.eba00", "$param_ref->{ref2}/sps.txt", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "aaaa", "$param_ref->{out_dir}/intermediate_files/STAT_$spsName"."_brk_$param_ref->{ref2Name}", $spsName, "$param_ref->{out_dir}/intermediate_files/stat/finalOut_$param_ref->{ref2Name}","$param_ref->{out_dir}/intermediate_files/stat/missedOut_$param_ref->{ref2Name}", "$param_ref->{ref1}/classification.eba", "$param_ref->{chekerExtend}", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{out_dir}/intermediate_files/stat/countSTAT_$param_ref->{ref2Name}", "$param_ref->{ref2Name}", "$param_ref->{out_dir}/intermediate_files/MISSING_coordinates_$param_ref->{ref2Name}");
 
 print LOG "Printing the $spsName STAT!\n" if $param_ref->{verbose};
 }
+
+#Lets liftover the -- inside out/lifover folder for lineage
+print "Lifting the coordinates for lineage\n";
+	system ("$param_ref->{liftOver}/liftOver $param_ref->{out_dir}/intermediate_files/MISSING_coordinates_$param_ref->{ref1Name} $param_ref->{liftOver}/taeGut2ToGalGal4.over.chain.gz $param_ref->{out_dir}/intermediate_files/ambi/lifted_MISSING_coordinates_$param_ref->{ref1Name} $param_ref->{out_dir}/intermediate_files/ambi/unlifted_MISSING_coordinates_$param_ref->{ref1Name}");
+
+	system ("$param_ref->{liftOver}/liftOver $param_ref->{out_dir}/intermediate_files/MISSING_coordinates_$param_ref->{ref2Name} $param_ref->{liftOver}/galGal4.taeGut2.all.chain.gz $param_ref->{out_dir}/intermediate_files/ambi/lifted_MISSING_coordinates_$param_ref->{ref2Name} $param_ref->{out_dir}/intermediate_files/ambi/unlifted_MISSING_coordinates_$param_ref->{ref2Name}");
+
 }
 
 if ($annot) { # add it later or ($full)
@@ -267,14 +273,22 @@ else {
   exit(1);
 };
 
-reconstructAncestral("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref1Name}", $param_ref, "$param_ref->{snameRef2}", "$param_ref->{ref1}/classification.eba", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 0);
+reconstructAncestral("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref1Name}", $param_ref, "$param_ref->{snameRef2}", "$param_ref->{ref1}/classification.eba", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 0, "$param_ref->{out_dir}/intermediate_files/AncMISSING_coordinates_$param_ref->{ref1Name}");
 
-reconstructAncestral("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef2, $SpsNumber, "$param_ref->{ref2Name}", $param_ref, "$param_ref->{snameRef1}", "$param_ref->{ref2}/classification.eba", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 0);
+reconstructAncestral("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef2, $SpsNumber, "$param_ref->{ref2Name}", $param_ref, "$param_ref->{snameRef1}", "$param_ref->{ref2}/classification.eba", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 0, "$param_ref->{out_dir}/intermediate_files/AncMISSING_coordinates_$param_ref->{ref2Name}");
 
-#Lets liftover
-reconstructAncestralLiftover("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref1Name}", $param_ref, "$param_ref->{snameRef2}", "$param_ref->{ref1}/classification.eba", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 1);
+#Lets liftover -- need to think of it
+#reconstructAncestralLiftover("$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef1, $SpsNumber, "$param_ref->{ref1Name}", $param_ref, "$param_ref->{snameRef2}", "$param_ref->{ref1}/classification.eba", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 1, "abc");
 
-reconstructAncestralLiftover("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef2, $SpsNumber, "$param_ref->{ref2Name}", $param_ref, "$param_ref->{snameRef1}", "$param_ref->{ref2}/classification.eba", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 1);
+#reconstructAncestralLiftover("$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", "$param_ref->{ref2}/$param_ref->{resolution}/EBA_OutFiles/all.hsb", "$param_ref->{threshold}", "$param_ref->{len}", \@ancestralRef2, $SpsNumber, "$param_ref->{ref2Name}", $param_ref, "$param_ref->{snameRef1}", "$param_ref->{ref2}/classification.eba", "$param_ref->{ref1}/$param_ref->{resolution}/EBA_OutFiles/final_classify.eba7", 1, "abc");
+
+
+#Lets liftover the -- inside out/lifover folder for lineage
+print "Lifting the coordinates for ancestral\n";
+	system ("$param_ref->{liftOver}/liftOver $param_ref->{out_dir}/intermediate_files/AncMISSING_coordinates_$param_ref->{ref1Name} $param_ref->{liftOver}/taeGut2ToGalGal4.over.chain.gz $param_ref->{out_dir}/intermediate_files/ambi/lifted_AncMISSING_coordinates_$param_ref->{ref1Name} $param_ref->{out_dir}/intermediate_files/ambi/unlifted_AncMISSING_coordinates_$param_ref->{ref1Name}");
+
+	system ("$param_ref->{liftOver}/liftOver $param_ref->{out_dir}/intermediate_files/AncMISSING_coordinates_$param_ref->{ref2Name} $param_ref->{liftOver}/galGal4.taeGut2.all.chain.gz $param_ref->{out_dir}/intermediate_files/ambi/lifted_AncMISSING_coordinates_$param_ref->{ref2Name} $param_ref->{out_dir}/intermediate_files/ambi/unlifted_AncMISSING_coordinates_$param_ref->{ref2Name}");
+
 
 
 foreach my $grpName (@ancestralRef1) {

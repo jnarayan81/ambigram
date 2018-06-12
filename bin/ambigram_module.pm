@@ -128,7 +128,7 @@ sub read_config_files {
 
 # PATH TO EXTERNAL PROGRAMS --->
 
-  #$param{bedtools_path} = read_config('bedtools', $param{reads_dir}, $ambigram_config);
+  $param{liftOver} = read_config('liftOver', $param{reads_dir}, $ambigram_config);
 
 # OUTPUT NAMES --->
   $param{result_table} = read_config('result_table', '', $ambigram_config);
@@ -204,7 +204,7 @@ sub parse_genome {
   my ($param) = shift;
   opendir (my $nt_files_dir, $param->{data_dir}) || die ("Path to asseembly fasta files not found: $!\n");
   my (%sequence_data);
-  print LOG ('Parsing overlapsd genome/contigs/scaffolds files', "\n") if $param->{verbose};
+  print LOG ('Parsing overlap genome/contigs/scaffolds files', "\n") if $param->{verbose};
   my $id_numeric_component = 1;  # Generate unique IDs with each sequence later on
   while (my $file = readdir ($nt_files_dir)) {
     if (($file eq '.') || ($file eq '..') || ($file =~ /^\./) || ($file =~ /~$/)) { next; }  # Prevents from reading hidden or backup files
@@ -1111,7 +1111,7 @@ reconstructTarget($OutFile, $out, $spsName, $threshold, $param);
 
 # Reconstruct the breaks
 sub reconstructBrk2 {
-my ($InFile, $OutFile, $spsName, $out, $threshold, $HSBInFile, $param, $spsNum, $outStat, $refName, $fEBA2, $aFlag) = @_;
+my ($InFile, $OutFile, $spsName, $out, $threshold, $HSBInFile, $param, $spsNum, $outStat, $refName, $fEBA2, $aFlag, $ancMiss) = @_;
 open (OUTFILE, ">>$OutFile") or die "$0: open $OutFile: $!";
 open INFILE,  $InFile or die "$0: open $InFile: $!";
 	while (<INFILE>) {
@@ -1125,8 +1125,8 @@ open INFILE,  $InFile or die "$0: open $InFile: $!";
 		my $pahala=trim($array3[0]);
 		my $dusara=trim($array3[1]);
 
-		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala, 1, $param->{method});
-		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara, 2, $param->{method});
+		my $firstC = findAncestralCor($HSBInFile, $spsName, $array[1], $pahala, 1, $param->{method}, $param);
+		my $secondC = findAncestralCor($HSBInFile, $spsName, $array[1], $dusara, 2, $param->{method}, $param);
 		
 		#In case not overlaps in HSB
 		if (!$firstC) { $firstC = "NA:NA:0\tNA:NA:0"; }
@@ -1139,13 +1139,14 @@ open INFILE,  $InFile or die "$0: open $InFile: $!";
 	close INFILE or die "could not tar2 file $InFile : $!\n";
 	close OUTFILE or die "could not close hhh $OutFile file: $!\n";
 
-checkOverlapsInRef($fEBA2, $OutFile, $out, $param, $spsNum, $outStat, $refName, $aFlag);
+checkOverlapsInRef($fEBA2, $OutFile, $out, $param, $spsNum, $outStat, $refName, $aFlag, $ancMiss);
 }
 
 sub checkOverlapsInRef {
-my ($finaRefFile, $inF, $OutFile, $param, $spsNum, $outStat, $refName, $aFlag) = @_;
+my ($finaRefFile, $inF, $OutFile, $param, $spsNum, $outStat, $refName, $aFlag, $ancMiss) = @_;
 open INFILE1,  $inF or die "$0: open $inF: $!";
 open (OUTFILE, ">>$OutFile") or die "$0: open $OutFile: $!";
+open (ANCMISSOUT, ">>$ancMiss") or die "$0: open $ancMiss: $!";
 if ($aFlag == 1) { open (OUTSTAT, ">>$param->{out_dir}/results/ancestral.lftS") or die "$0: open anc: $!"; }
 else { open (OUTSTAT, ">>$param->{out_dir}/results/ancestral.stat") or die "$0: open anc: $!"; }
 
@@ -1159,7 +1160,7 @@ my @aLine= split /\t/, lc($l1);
 $sVal{$aLine[0]}=$aLine[1];
 }
 
-my @sName1; my @sName2; my $count=0;  my $count1=0; my $count2=0; my @ancName;
+my @sName1; my @sName2; my $count=0;  my $count1=0; my $count2=0; my @ancName; my $overlapsCount=0;
 while (<INFILE1>) {
 chomp;
 if ($_ =~ /^\s*#/) { next; }
@@ -1168,6 +1169,8 @@ my @array1 = split /\t/, lc($line1);
 my @fDetail = split /\:/, $array1[0];
 my @sDetail = split /\:/, $array1[1];
 @ancName= split /\:/, $array1[4];
+my $flag="off";
+
 	open INFILE2,  $finaRefFile or die "$0: open $finaRefFile: $!";  #eba7 file here
 	while (<INFILE2>) {
 	chomp;
@@ -1179,11 +1182,12 @@ my @sDetail = split /\:/, $array1[1];
 	@sName2=split /\:/, lc($array[$spsNum+8]);
 
 	my @finalDetailCor = split /\-\-/, $array[$spsNum+2]; #broad coordinates
+	#At the moment I am not taking care of 0 or <$param->{extend} coordiantes while extension !!
 	my $extST= $fDetail[2]-$param->{extend}; my $extEd= $sDetail[2]+$param->{extend};
 	my $ORes = checkOverlaps($finalDetailCor[0], $finalDetailCor[1], $extST, $extEd);
 	if ($ORes) {
 	#It will print multiple times ..if multiple overlaps
-	print OUTFILE "$fDetail[1]\t$fDetail[2]\t$sDetail[2]\t$extST\t$extEd\t$line1\t$_\n";
+	print OUTFILE "$fDetail[1]\t$fDetail[2]\t$sDetail[2]\t$extST\t$extEd\t$line1\t$line\n";
 	#Check in both cases firstBestBRK class and secBestBRK class
 	#if (($ancName[0] eq  $sName1[0]) or ($ancName[0] eq  $sName2[0])) { $count++;} # Here $array[20] is the score ----- either first class or second class is the same count++
 	#if ((($ancName[0] eq  $sName1[0]) or ($ancName[0] eq  $sName2[0])) and  ($array[$spsNum+9] > 1)) { $count++;} # Here $array[20] is the score ----- either first class or second class is the same count++
@@ -1191,21 +1195,26 @@ my @sDetail = split /\:/, $array1[1];
 	if (($ancName[0] eq  $sName1[0]) and  ($array[$spsNum+9] > 1)) { $count++;} # Here $array[20] is the score ----- either first class or second class is the same count++
 	elsif ((($ancName[0] eq  $sName1[0]) or ($ancName[0] eq  $sName2[0])) and ($array[$spsNum+9] == 1)) { $count1++;} #If 1 .. first or second best classification
 	elsif (($ancName[0] eq  $sName2[0]) and ($array[$spsNum+9] >= 1)) { $count2++;} #count two if second best classification is matched
-
+	$flag="on";
+	$overlapsCount++;
 	}}
+	#Print the misisng overlapping ancestral brks detail here
+	$line1 =~ s/\t/,/g;
+	if ($flag eq "off") { print ANCMISSOUT "chr$fDetail[1]\t$fDetail[2]\t$sDetail[2]\t$line1\n"; }
 	close INFILE2 or die "could not close hmm $finaRefFile file: $!\n";
 }
 #Here outStat is infact refName
 my $totalCount=$count+$count1;
-print OUTSTAT "$outStat\t$ancName[0]\t$sVal{$ancName[0]}\t$count\t$count1\t$count2\t$totalCount\n";
+print OUTSTAT "$outStat\t$ancName[0]\t$sVal{$ancName[0]}\t$count\t$count1\t$count2\t$overlapsCount\t$totalCount\n";
 close OUTFILE or die "could not close hhh $OutFile file: $!\n";
+close ANCMISSOUT or die "could not close hhh $ancMiss file: $!\n";
 close INFILE1 or die "could not close hmm $finaRefFile file: $!\n";
 
 }
 
 #Find ancestral coordiantes
 sub findAncestralCor {
-my ($HSBInFile, $spsName, $spsChr, $spsSt, $nn, $approach) = @_;
+my ($HSBInFile, $spsName, $spsChr, $spsSt, $nn, $approach, $param) = @_;
 open HSBFILE,  $HSBInFile or die "$0: open HSB file $HSBInFile: $!";
 my $corVal="NA\tNA"; my $flag=0;
 	while (<HSBFILE>) {
@@ -1237,7 +1246,7 @@ my $corVal="NA\tNA"; my $flag=0;
 		$localCor = $array[5] + $localDist;
 		}
 
-		my $extCor = 1000;
+		my $extCor = $param->{extend};
 		my $secC= $localCor + $extCor;
 		my $firC= $localCor - $extCor;
 
@@ -1576,7 +1585,7 @@ close $OUT or die $!;
 #check the TAR2TAR overlaps
 sub checkOverlapsTAR {
 
-my ($file_ref, $file_tar, $outfile, $refName, $spsNum, $length, $allall, $spsFile, $allHSB, $statfile, $outfile2, $identify, $dataFinal, $missedFinal, $groupClass, $chekerExtend, $finalEBA, $cntSTATFile) = @_;
+my ($file_ref, $file_tar, $outfile, $refName, $spsNum, $length, $allall, $spsFile, $allHSB, $statfile, $outfile2, $identify, $dataFinal, $missedFinal, $groupClass, $chekerExtend, $finalEBA, $cntSTATFile, $rName, $missingOutFile) = @_;
 
 open cntSTAT, ">>$cntSTATFile" or die $!;
 
@@ -1754,8 +1763,18 @@ foreach my $v (@missinBrk) {
 	if ((index($fc1, $refName) != -1) or (index($fc2, $refName) != -1)) { $finalD = "$refName"; }
 	my $finalLine="$v\t$refChr1\t$corSt\t$refChr2\t$corEd\t$refChrVal1\t$corVal1\t$DeciVal1\t$refChrVal2\t$corVal2\t$DeciVal2\t$finClass\t$fclass1\t$fc1\t$fclass2\t$fc2\t$finalD\n";
 	print $outfh4 "$finalLine";
+
+	#for liftover
+	my $lST1=$vals[12]-1000; my $lED1=$vals[12]+1000; 
+	my $lST2=$vals[14]-1000; my $lED2=$vals[14]+1000; 
+	my $commaLine = $finalLine;
+	$commaLine =~ s/\t/,/g; $commaLine =~ s/\n//g;
+	my $lftLine="$vals[11]\t$lST1\t$lED1\t$rName:$commaLine\n$vals[13]\t$lST2\t$lED2\t$rName:$commaLine\n";
+
 	createMissedTable ($finalLine, $missedFinal, $refName);
+	createMissedTable ($lftLine, $missingOutFile, 'NA');
 	}
+close $outfh4;
 }
 
 =pod
@@ -2156,7 +2175,7 @@ close INHSB or die "could not close INHSB file: $!\n";
 
 ##Recontruct the breakpoints
 sub reconstructAncestral {
-my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $refName, $param, $refSciName2, $phyloClass, $fEBA2, $aFlag)=@_;
+my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $refName, $param, $refSciName2, $phyloClass, $fEBA2, $aFlag, $ancMiss)=@_;
 
 #if (-d "$param->{out_dir}/output_$refName") {
 #deldir("$param->{out_dir}/output_$refName"); # or deldir($ARGV[0]) to make it commandline
@@ -2215,14 +2234,14 @@ foreach my $spsName(@$AncestralNames_ref) {
 close OUTSTAT or die "could not close OUTSTAT file: $!\n";
 close OUTFILE1 or die "could not close $outAncestralfile1 file: $!\n";
 
-reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber, $refName, $refName, $fEBA2, $aFlag);
+reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber, $refName, $refName, $fEBA2, $aFlag, $ancMiss);
 }}
 
 
 
 ## Recontruct the breakpoints and liftOver
 sub reconstructAncestralLiftover {
-my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $refName, $param, $refSciName2, $phyloClass, $fEBA2, $aFlag)=@_;
+my ($finalEBA, $allHSB, $threshold, $length, $AncestralNames_ref, $SpsNumber, $refName, $param, $refSciName2, $phyloClass, $fEBA2, $aFlag, $ancMiss)=@_;
 
 #if (-d "$param->{out_dir}/output_$refName") {
 #deldir("$param->{out_dir}/output_$refName"); # or deldir($ARGV[0]) to make it commandline
@@ -2282,7 +2301,8 @@ foreach my $spsName(@$AncestralNames_ref) {
 close OUTSTAT or die "could not close OUTSTAT file: $!\n";
 close OUTFILE1 or die "could not close $outAncestralfile1 file: $!\n";
 
-reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber, $refName, $refName, $fEBA2, $aFlag);
+reconstructBrk2($outAncestralfile1, $outAncestralfile2, $refSciName2, $outAncestralfile3, $threshold, $allHSB, $param, $SpsNumber, $refName, $refName, $fEBA2, $aFlag, $ancMiss);
+last ; #Just to work on a single ancestral .. and create all brks
 }}
 
 

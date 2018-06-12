@@ -4,11 +4,11 @@
 
 -=-=-= BASIC PARAMETER FOR LOCATION AND FILE NAME =-=-=-
 
-reads_dir = /Users/jitendra/myTools/ambigram/sampleDATA
+reads_dir = /home/jitendra/ETC/ambigram/ambigram2/sampleDATA/
 
--=-=-= PATH TO EXTERNAL PROGRAMS USED BY quadraG =-=-=-
+-=-=-= PATH TO EXTERNAL PROGRAMS USED BY ambigram =-=-=-
 
-#bwakit = /home/jitendra/ETC/Sanyojan/bwa.kit/bwa
+liftOver = /home/jitendra/ETC/ambigram/ambigram2/liftOver/
 
 -=-=-= PARAMETERS FOR INTERNAL USE =-=-=-
 
@@ -17,6 +17,6 @@ result_uncertain = uncertain.out                  # file with the list of cluste
 result_positive = positive.out                    # file with the list of clusters with evidence of positive selection.
 
 summary = summary.out
-intermediate = quadra.q4
+intermediate = test.txt
 log_file = final_log.log                          # log file name
 log_path = $quadra_dir/log/                         # path where log file will be created
