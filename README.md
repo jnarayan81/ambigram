@@ -12,7 +12,7 @@ ambigram is a bioinformatics tool to check if chromosomal breakpoints retain mea
 
 Work in progress -- so far, this tool was only tested on Chicken and Finch data. Feel free to report any bugs or flags...
 
-Copyright 2018 Jitendra Narayan <jitendra.narayan@unamur.be> or jnarayan81@gmail.com;
+Copyright 2018 Jitendra Narayan jnarayan81@gmail.com;
 
 ## LICENSE
 
