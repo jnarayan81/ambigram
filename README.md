@@ -14,6 +14,8 @@ Work in progress -- so far, this tool was only tested on Chicken and Finch data.
 
 Copyright 2018 Jitendra Narayan jnarayan81@gmail.com;
 
+ambigram is currently in active development and is not ready for general use. The software will be fully described in a forthcoming publication.
+
 ## LICENSE
 
 ambigram is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
