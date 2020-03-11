@@ -14,7 +14,7 @@ Work in progress -- so far, this tool was only tested on Chicken and Finch data.
 
 Copyright 2018 Jitendra Narayan jnarayan81@gmail.com;
 
-ambigram is currently in active development and is not ready for general use. The software will be fully described in a forthcoming publication.
+``ambigram`` is currently in active development and is not ready for general use. The software will be fully described in a forthcoming publication.
 
 ## LICENSE
 
